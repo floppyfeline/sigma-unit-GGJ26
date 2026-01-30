@@ -1,21 +1,12 @@
 using UnityEngine;
 using System.IO;
-using Yarn.Unity;
 using UnityEngine.InputSystem;
 using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    #region Dialogue
-
-    public Action OnDialogueEnter;
-    public Action OnDialogueExit;
-
-    public Action<int> OnMoneyUpdated;
-    public Action<int> OnYarnUpdated;
-
-    #endregion
+    private LevelLoader SceneLoader;
 
     protected virtual void Awake()
     {
@@ -49,53 +40,9 @@ public class GameManager : MonoBehaviour
         SceneLoader.LoadMainMenu();
     }
     #endregion
-    public int Money
-    {
-        get { return money; }
-        set
-        {
-            money = value;
-
-            OnMoneyUpdated?.Invoke(money);
-        }
-    }
-
-    public int YarnBalls
-    {
-        get { return yarnBalls; }
-        set
-        {
-            yarnBalls = value;
-
-            OnYarnUpdated?.Invoke(yarnBalls);
-        }
-    }
-
-    #region Dialogue
-    public void StartDialogue(string nodeName)
-    {
-        if (dialogueRunner != null)
-        {
-            dialogueRunner.StartDialogue(nodeName);
-        }
-        else
-        {
-            Debug.LogWarning("DialogueRunner is not assigned in GameManager.");
-        }
-    }
-    public void RequestNextLine(InputAction.CallbackContext ctx)
-    {
-        Debug.Log("Requesting next line from input");
-        dialogueRunner.RequestNextLine();
-    }
-
-    #endregion
-
     [System.Serializable]
     private class SaveGameData
     {
-        public int money;
-        public int yarnBalls;
     }
 
 #region SaveGame
@@ -103,8 +50,6 @@ public class GameManager : MonoBehaviour
     {
         // Fill up the SaveGameData object here
         SaveGameData data = new SaveGameData();
-        data.money = money;
-        data.yarnBalls = yarnBalls;
 
         // Convert to json
         string json = JsonUtility.ToJson(data, true);
@@ -126,8 +71,6 @@ public class GameManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveGameData data = JsonUtility.FromJson<SaveGameData>(json);
 
-            money = data.money;
-            yarnBalls = data.yarnBalls;
 
             Debug.Log("Game loaded from " + path);
 

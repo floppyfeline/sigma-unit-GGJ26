@@ -20,21 +20,13 @@ namespace Klex.Player
 
         // INPUT ACTIONS
         public InputAction Move { get; private set; }
-        public InputAction Look { get; private set; }
-        public InputAction Interact { get; private set; }
         public InputAction Jump { get; private set; }
-        public InputAction Crouch { get; private set; }
-        public InputAction Dash { get; private set; }
-        public InputAction Attack { get; private set; }
-        public InputAction Meow { get; private set; }
-        public InputAction Ball { get; private set; }
-        public InputAction Sprint { get; private set; }
+        public InputAction Color1 { get; private set; }
+        public InputAction Color2 { get; private set; }
+        public InputAction Color3 { get; private set; }
+        public InputAction Color4 { get; private set; }
         public InputAction ToggleMenu { get; private set; }
 
-
-        public PlayerController Klex;
-
-        public Action OnInputsInitialised;
         #endregion
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
@@ -43,7 +35,6 @@ namespace Klex.Player
             Actions.Player.Enable();
             MapInputActions();
             SetCursorLock(true);
-            Klex.Inputs = this;
         }
         private void OnDestroy()
         {
@@ -55,19 +46,12 @@ namespace Klex.Player
 
             // Default Inputs
             Move = Actions.Player.Move;
-            Look = Actions.Player.Look;
-            Interact = Actions.Player.Interact;
             Jump = Actions.Player.Jump;
-            Crouch = Actions.Player.Crouch;
-            Dash = Actions.Player.Dash;
-            Attack = Actions.Player.Attack;
-            Meow = Actions.Player.Meow;
-            //Ball = Actions.Player.Ball;
-            Ball = new InputAction();
+            Color1 = Actions.Player.Color1;
+            Color2 = Actions.Player.Color2;
+            Color3 = Actions.Player.Color3;
+            Color4 = Actions.Player.Color4;
             ToggleMenu = Actions.Player.Menu;
-            Sprint = Actions.Player.Sprint;
-
-            OnInputsInitialised?.Invoke();
         }
 
         private void OnEnable()
@@ -97,18 +81,14 @@ namespace Klex.Player
             PlayerInputs inputs = new PlayerInputs
             {   
                 CameraRotation = Camera.main.transform.rotation,
-                Move = Move.ReadValue<Vector2>(),
-                Look = Look.ReadValue<Vector2>()
+                Move = Move.ReadValue<Vector2>()
             };
-            Klex.ProcessPlayerInputs(inputs);
+            // Send inputs to player controller!!!
         }
-      
+
         void Update()
         {
-            if(Klex != null)
-            {
-                UpdatePlayerInputs();
-            }
+            UpdatePlayerInputs();
         }
     }
 }
