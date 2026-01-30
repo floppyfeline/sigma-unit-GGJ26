@@ -3,16 +3,8 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-namespace Klex.Player
-{
-    public struct PlayerInputs
-    {
-        public Quaternion CameraRotation;
-        public Vector2 Move;
-        public Vector2 Look;
-    }
 
-    public class KlexInputSystem : MonoBehaviour
+    public class InputSystem : MonoBehaviour
     {
         #region vars
 
@@ -91,4 +83,9 @@ namespace Klex.Player
             UpdatePlayerInputs();
         }
     }
-}
+    public struct PlayerInputs
+    {
+        public Quaternion CameraRotation;
+        public Vector2 Move;
+        public Vector2 Look;
+    }
