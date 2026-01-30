@@ -58,6 +58,8 @@ using UnityEngine.InputSystem;
         private void OnEnable()
         {
             if(Actions != null) Actions.Player.Enable();
+
+            Jump.performed += ctx => playerController.Jump();
         }
         private void OnDisable()
         {
@@ -84,6 +86,7 @@ using UnityEngine.InputSystem;
                 Move = Move.ReadValue<Vector2>()
             };
             playerController.SetInputs(inputs);
+
         }
 
         void Update()
