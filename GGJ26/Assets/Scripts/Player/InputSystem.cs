@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-namespace Klex.Player
-{
+
+
+
     public struct PlayerInputs
     {
         public Quaternion CameraRotation;
@@ -12,10 +10,9 @@ namespace Klex.Player
         public Vector2 Look;
     }
 
-    public class KlexInputSystem : MonoBehaviour
+    public class InputSystem : MonoBehaviour
     {
         #region vars
-
         public InputActions Actions;
 
         // INPUT ACTIONS
@@ -27,6 +24,8 @@ namespace Klex.Player
         public InputAction Color4 { get; private set; }
         public InputAction ToggleMenu { get; private set; }
 
+        private PlayerController playerController;
+
         #endregion
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
@@ -35,6 +34,8 @@ namespace Klex.Player
             Actions.Player.Enable();
             MapInputActions();
             SetCursorLock(true);
+
+            playerController = GetComponent<PlayerController>();
         }
         private void OnDestroy()
         {
@@ -77,13 +78,12 @@ namespace Klex.Player
         }
         private void UpdatePlayerInputs()
         {
-            // Processed in KlexPlayerController
             PlayerInputs inputs = new PlayerInputs
             {   
                 CameraRotation = Camera.main.transform.rotation,
                 Move = Move.ReadValue<Vector2>()
             };
-            // Send inputs to player controller!!!
+            playerController.SetInputs(inputs);
         }
 
         void Update()
@@ -91,4 +91,4 @@ namespace Klex.Player
             UpdatePlayerInputs();
         }
     }
-}
+
