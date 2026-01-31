@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class TongueData
@@ -39,6 +40,8 @@ public class TongueControl : MonoBehaviour
     private ITongueable currentTarget;
     private Vector3 hitPoint;
 
+    public UnityEvent OnTongueLaunched;
+    public UnityEvent OnTongueRetracted;
     void OnEnable()
     {
         tongueData.ResetTongue();
@@ -75,6 +78,7 @@ public class TongueControl : MonoBehaviour
 
             tongueTimer = Constants.TONGUE_Speed / 2;
         }
+        OnTongueLaunched?.Invoke();
     }
 
     public void ToggleRotation(bool toggle)
@@ -173,6 +177,7 @@ public class TongueControl : MonoBehaviour
                 if (tongueTimer <= -Constants.TONGUE_Speed / 2)
                 {
                     tongueData.ResetTongue();
+                    OnTongueRetracted?.Invoke();
                     tongueLaunched = false;
                 }
             }

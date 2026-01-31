@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56bfc85556e080b4e93f5c70d44b0f18, type: 3}
-  m_Name: TestPalette
+  m_Name: TestPalette 1
   m_EditorClassIdentifier: Assembly-CSharp::LevelPalette
   palette:
-    ChamRestColor: {r: 0, g: 1, b: 0.9853325, a: 0}
-    Color1: {r: 0.97873545, g: 1, b: 0, a: 0}
-    Color2: {r: 0.19503021, g: 0, b: 1, a: 0}
-    Color3: {r: 0, g: 1, b: 0.18104935, a: 0}
-    Color4: {r: 1, g: 0, b: 0.4916792, a: 0}
+    ChamRestColor: {r: 0, g: 1, b: 0.1990521, a: 0}
+    Color1: {r: 0.9937107, g: 1, b: 0.61320746, a: 0}
+    Color2: {r: 0.8190634, g: 0.77493256, b: 1, a: 0}
+    Color3: {r: 0.7695417, g: 1, b: 0.89426035, a: 0}
+    Color4: {r: 1, g: 0.7210242, b: 0.8577771, a: 0}
     None: {r: 0.2274939, g: 0.25652483, b: 0.4501347, a: 0}
-    ShadowColor: {r: 0.01785707, g: 0, b: 0.42857128, a: 0}
+    ShadowColor: {r: 0.4149212, g: 0.3867923, b: 1, a: 0}

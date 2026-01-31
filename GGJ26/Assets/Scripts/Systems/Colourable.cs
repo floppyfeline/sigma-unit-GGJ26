@@ -12,7 +12,7 @@ public class Colourable : InspectorAttributes
     {
         PaletteManager.Instance.OnPaletteChanged += (palette) => SetColour(Colour, palette);
     }
-    private Color GetColourFromPalette(LevelPaletteStruct palette)
+    protected Color GetColourFromPalette(LevelPaletteStruct palette)
     {
         switch (Colour)
         {
@@ -54,7 +54,6 @@ public class Colourable : InspectorAttributes
         foreach (Renderer renderer in _colourables)
         {
             int materials = renderer.sharedMaterials.Length;
-            Debug.Log(materials);
             for (int i = 0; i < materials; i++)
             {
                 renderer.GetPropertyBlock(block);
