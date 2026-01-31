@@ -6,6 +6,10 @@ public class ColourTile : Colourable
    protected override void Start()
     {
         base.Start();
+        CollectColourables();
+    }
+    public void CollectColourables()
+    {
         MeshRenderer[] rend = GetComponentsInChildren<MeshRenderer>();
         _colourables = new List<MeshRenderer>(rend);
     }
