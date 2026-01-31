@@ -44,6 +44,7 @@ public class LevelPalette : ScriptableObject
 [System.Serializable]
 public struct LevelPaletteStruct
 {
+    public Color ChamRestColor;
     public Color Color1;
     public Color Color2;
     public Color Color3;

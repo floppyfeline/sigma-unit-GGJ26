@@ -7,6 +7,7 @@ public class ColourTile : Colourable
     {
         base.Start();
         CollectColourables();
+        SetColour(Colour, PaletteManager.Instance.CurrentLevelPalette.palette);
     }
     public void CollectColourables()
     {
