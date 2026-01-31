@@ -22,7 +22,8 @@ public class LevelTileCollection : InspectorAttributes
             Color1 = Color.red,
             Color2 = Color.green,
             Color3 = Color.blue,
-            Color4 = Color.yellow
+            Color4 = Color.yellow,
+            None = Color.black
         };
     }
     [MethodButton("Set Test Palette")]
@@ -61,38 +62,42 @@ public class LevelTileCollection : InspectorAttributes
         _generatedTiles.IsGenerated = true;
         foreach (ColourTile tile in _levelTiles)
         {
+            tile.CollectColourables();
             //add individual cubes for each tile
-            BoxCollider tileCollider = tile.GetComponentInChildren<BoxCollider>();
 
-            Bounds bounds = tileCollider.bounds;
-
-            int width = Mathf.RoundToInt(bounds.size.x);
-            int length = Mathf.RoundToInt(bounds.size.z);
-            int height = Mathf.RoundToInt(bounds.size.y);
-            Debug.Log($"Generating tiles for {tile.name} with width {width}, length {length}, height {height}");
-            for (int z = 0; z < length; z++)
+            BoxCollider[] tileColliders = tile.GetComponentsInChildren<BoxCollider>();
+            foreach (BoxCollider col in tileColliders)
             {
-                for (int x = 0; x < width; x++)
-                {
-                    for (int y = 0; y < height; y++)
-                    {
-                        Vector3 spawnPosition = new Vector3(
-                            bounds.min.x + x +1,
-                            bounds.min.y + y + 1,
-                            bounds.min.z + z +1
-                        );
-                        GameObject tileCube = Instantiate(
-                            Resources.Load<GameObject>(TILE_PREFAB_PATH),
-                            spawnPosition,
-                            Quaternion.identity,
-                            newCollection.transform
-                        );
-                        tileCube.name = $"{tile.name}_Cube_{x}_{y}_{z}";
-                        tileCube.transform.SetParent(newCollection.transform);
+                Bounds bounds = col.bounds;
 
-                        ColourTile cubeColourTile = tileCube.GetComponent<ColourTile>();
-                        cubeColourTile.SetColour(tile.Colour, GetTestPalette());
-                        _generatedTiles._levelTiles.Add(cubeColourTile);
+                int width = Mathf.RoundToInt(bounds.size.x);
+                int length = Mathf.RoundToInt(bounds.size.z);
+                int height = Mathf.RoundToInt(bounds.size.y);
+                Debug.Log($"Generating tiles for {tile.name} with width {width}, length {length}, height {height}");
+                for (int z = 0; z < length; z++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        for (int y = 0; y < height; y++)
+                        {
+                            Vector3 spawnPosition = new Vector3(
+                                bounds.min.x + x + 1,
+                                bounds.min.y + y + 1,
+                                bounds.min.z + z + 1
+                            );
+                            GameObject tileCube = Instantiate(
+                                Resources.Load<GameObject>(TILE_PREFAB_PATH),
+                                spawnPosition,
+                                Quaternion.identity,
+                                newCollection.transform
+                            );
+                            tileCube.name = $"{tile.name}_Cube_{x}_{y}_{z}";
+                            tileCube.transform.SetParent(newCollection.transform);
+
+                            ColourTile cubeColourTile = tileCube.GetComponent<ColourTile>();
+                            cubeColourTile.SetColour(tile.Colour, GetTestPalette());
+                            _generatedTiles._levelTiles.Add(cubeColourTile);
+                        }
                     }
                 }
             }

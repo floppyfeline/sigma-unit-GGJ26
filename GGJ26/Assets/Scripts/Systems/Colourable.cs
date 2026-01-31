@@ -33,7 +33,7 @@ public class Colourable : InspectorAttributes
             case TileColour.Fourth:
                 return palette.Color4;
             default:
-                return Color.clear;
+                return Color.black;
         }
     }
     public virtual void SetColour(TileColour colour, LevelPaletteStruct palette)
