@@ -5,7 +5,8 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerColourManager : Colourable
 {
     private bool _isColoured = false;
-    public bool IsHidden { get; private set;  }
+    public bool IsHidden { get; private set; }
+    private bool _isHidden = false;
     [SerializeField] private float _colourTime = 1.0f;
     [SerializeField]private TileColour _standingOnColour = TileColour.None;
     [SerializeField] private Color _baseColour;
