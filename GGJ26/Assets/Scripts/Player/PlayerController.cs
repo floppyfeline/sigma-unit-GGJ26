@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     
     [Header("Movement Parameters")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float _hideMoveSpeed = 2f;
+    private float _activeMoveSpeed;
     [SerializeField] private float jumpTime = 2f;
     [SerializeField] private float _jumpHeight = 5f;
     [SerializeField] private float gravityBuildup = 0.05f;
@@ -26,6 +28,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        PlayerColourManager colourManager = GetComponent<PlayerColourManager>();
+        colourManager.OnColourPicked.AddListener(() => _activeMoveSpeed = _hideMoveSpeed);
+        colourManager.OnColourReset.AddListener(() => _activeMoveSpeed = moveSpeed);
+        _activeMoveSpeed = moveSpeed;
     }
 
     void Update()
@@ -63,7 +69,7 @@ public class PlayerController : MonoBehaviour
             camRight * moveInput.Move.x +
             camForward * moveInput.Move.y;
 
-        Vector3 moveVector = moveDirection * moveSpeed;
+        Vector3 moveVector = moveDirection * _activeMoveSpeed;
 
         if(!wallCheck.IsWalled) rb.linearVelocity = new Vector3(moveVector.x, rb.linearVelocity.y, moveVector.z);
 

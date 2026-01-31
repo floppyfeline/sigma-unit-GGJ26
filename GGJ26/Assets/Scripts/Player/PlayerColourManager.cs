@@ -10,11 +10,14 @@ public class PlayerColourManager : Colourable
     [SerializeField]private TileColour _standingOnColour = TileColour.None;
     [SerializeField] private Color _baseColour;
 
+    public UnityEvent OnColourPicked;
+    public UnityEvent OnColourReset;
     public UnityEvent OnHide;
     public UnityEvent OnShow;
     Color _currentColour;
     Timer _transitionTimer;
     float _transitionTime = 0f;
+
     protected override void Start()
     {
         base.Start();
@@ -35,11 +38,17 @@ public class PlayerColourManager : Colourable
     }
     public override void SetColour(TileColour colour, LevelPaletteStruct palette)
     {
+        if(colour == TileColour.None || colour == Colour)
+        {
+            ResetColour();
+            return;
+        }
         Colour = colour;
         Color target = GetColourFromPalette(palette);
         StartColourTransition(target);
         _isColoured = true;
         CheckForHidden();
+        OnColourPicked?.Invoke();
     }
     public void StartColourTransition(Color targetColour)
     {
@@ -62,7 +71,7 @@ public class PlayerColourManager : Colourable
     {
         StartColourTransition(_baseColour);
         _isColoured = false;
-        OnShow?.Invoke();
+        OnColourReset?.Invoke();
         CheckForHidden();
     }
     public void CheckForHidden()
