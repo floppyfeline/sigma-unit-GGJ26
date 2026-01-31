@@ -1,5 +1,7 @@
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 public class PlayerColourManager : Colourable
 {
     private bool _isColoured = false;
@@ -10,11 +12,14 @@ public class PlayerColourManager : Colourable
 
     public UnityEvent OnHide;
     public UnityEvent OnShow;
+    Color _currentColour;
+    Timer _transitionTimer;
+    float _transitionTime = 0f;
     protected override void Start()
     {
         base.Start();
         _baseColour = PaletteManager.Instance.CurrentLevelPalette.palette.ChamRestColor;
-        InputSystem inputs = GetComponent<InputSystem>();
+        InputSystem inputs = GetComponent<InputSystem>(); 
         if (inputs != null)
         {
             inputs.Color1.performed += ctx => SetColour(TileColour.First, PaletteManager.Instance.CurrentLevelPalette.palette);
@@ -26,16 +31,36 @@ public class PlayerColourManager : Colourable
         inputs.LaunchTongue.performed += ctx => ResetColour();
 
         SetColour(_baseColour);
+        _currentColour = _baseColour;
     }
     public override void SetColour(TileColour colour, LevelPaletteStruct palette)
     {
-        base.SetColour(colour, palette);
+        Colour = colour;
+        Color target = GetColourFromPalette(palette);
+        StartColourTransition(target);
         _isColoured = true;
         CheckForHidden();
     }
+    public void StartColourTransition(Color targetColour)
+    {
+        if (_transitionTimer != null)
+        {
+            Timers.Remove(_transitionTimer);
+        }
+        _transitionTimer = Timers.UntilThen(_colourTime, () =>
+        {
+            _transitionTime += Time.deltaTime;
+            base.SetColour(Color.Lerp(_currentColour, targetColour, _transitionTime / _colourTime));
+        }, () =>
+        {
+            _currentColour = targetColour;
+            _transitionTime = 0f;
+            _transitionTimer = null;
+        });
+    }
     public void ResetColour()
     {
-        base.SetColour(_baseColour);
+        StartColourTransition(_baseColour);
         _isColoured = false;
         OnShow?.Invoke();
         CheckForHidden();
@@ -44,7 +69,6 @@ public class PlayerColourManager : Colourable
     {
         if(!_isColoured)
         {
-            Debug.Log("Player is not coloured");
             _isHidden = false;
             OnShow?.Invoke();
             return;

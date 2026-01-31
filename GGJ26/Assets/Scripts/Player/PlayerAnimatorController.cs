@@ -18,8 +18,9 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         _animator.SetBool(WALK_BOOL, enabled);
     }
-    private void SetTongueBool(bool enabled)
+    public void SetTongueBool(bool enabled)
     {
+        Debug.Log("Setting tongue bool to " + enabled);
         _animator.SetBool(TONGUE_BOOL, enabled);
     }
     }

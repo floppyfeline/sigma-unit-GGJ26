@@ -57,10 +57,11 @@ public class LevelTileCollection : InspectorAttributes
             Debug.LogWarning("Cannot generate collection from an already generated collection.");
             return;
         }
-        if(_generatedTiles != null)
+        if (_generatedTiles != null)
         {
             DestroyImmediate(_generatedTiles.gameObject);
         }
+        CollectTiles();
         GameObject newCollection = new GameObject("Generated Tiles");
         newCollection.transform.parent = this.transform.parent;
         _generatedTiles = newCollection.AddComponent<LevelTileCollection>();
@@ -98,6 +99,11 @@ public class LevelTileCollection : InspectorAttributes
                                 newCollection.transform
                             );
                             tileCube.layer = tile.gameObject.layer;
+                            BoxCollider[] cols = tileCube.GetComponentsInChildren<BoxCollider>();
+                            foreach (BoxCollider c in cols)
+                            {
+                                c.gameObject.layer = tile.gameObject.layer;
+                            }
                             tileCube.name = $"{tile.name}_Cube_{x}_{y}_{z}";
                             tileCube.transform.SetParent(newCollection.transform);
 
