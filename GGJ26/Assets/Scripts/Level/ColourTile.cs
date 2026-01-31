@@ -1,63 +1,24 @@
 using UnityEngine;
 using UnityEngine.Rendering;
-
-public class ColourTile : InspectorAttributes
+using System.Collections.Generic;
+public class ColourTile : Colourable
 {
-    [SerializeField] public TileColour Colour;
-    MeshRenderer _renderer;
-    public enum TileColour
+   protected override void Start()
     {
-        First, Second, Third, Fourth, None
+        base.Start();
+        MeshRenderer[] rend = GetComponentsInChildren<MeshRenderer>();
+        _colourables = new List<MeshRenderer>(rend);
     }
-    private Color GetColourFromPalette(LevelPaletteStruct palette)
+    private void OnTriggerEnter(Collider other)
     {
-        switch (Colour)
-        {
-            case TileColour.First:
-                return palette.Color1;
-            case TileColour.Second:
-                return palette.Color2;
-            case TileColour.Third:
-                return palette.Color3;
-            case TileColour.Fourth:
-                return palette.Color4;
-            default:
-                return Color.clear;
-        }
-    }
-    public void SetTileColour(TileColour colour, LevelPaletteStruct palette)
-    {
-        Colour = colour;
-        var block = new MaterialPropertyBlock();
-        if (_renderer == null)
-        {
-            _renderer = GetComponentInChildren<MeshRenderer>();
-            if (_renderer == null)
+        if (other.CompareTag("Player"))
+        { 
+            PlayerColourManager playerColourManager = other.GetComponentInParent<PlayerColourManager>();
+            Debug.Log("Player entered tile of colour: " + Colour.ToString());
+            if (playerColourManager != null)
             {
-                Debug.LogWarning("Renderer is null on GameObject: " + gameObject.name);
+                playerColourManager.OnFloorChange(Colour);
             }
         }
-        _renderer.GetPropertyBlock(block);
-        block.SetColor("_TileColour", GetColourFromPalette(palette));
-        _renderer.SetPropertyBlock(block, 0);
-    }
-    public void SetTileColour(LevelPaletteStruct palette)
-    {
-        var block = new MaterialPropertyBlock();
-        if (_renderer == null)
-        {
-            _renderer = GetComponentInChildren<MeshRenderer>();
-            if (_renderer != null)
-            {
-                Debug.LogWarning("Renderer is null on GameObject: " + gameObject.name);
-            }
-        }
-        _renderer.GetPropertyBlock(block);
-        block.SetColor("_TileColour", GetColourFromPalette(palette));
-        _renderer.SetPropertyBlock(block, 0);
-    }
-    private void Start()
-    {
-        _renderer = GetComponentInChildren<MeshRenderer>();
     }
 }
