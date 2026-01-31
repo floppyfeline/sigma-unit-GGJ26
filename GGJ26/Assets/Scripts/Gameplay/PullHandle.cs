@@ -2,19 +2,23 @@ using UnityEngine;
 
 public class PullHandle : MonoBehaviour, ITongueable
 {
-    [Tooltip("Time it takes for the player to reach the handle")]
-    [SerializeField] private float pullSpeed = 0.2f;
     private Vector3 pullTo;
     private Transform playerTransform;
 
     private float pullTimer;
     private Vector3 initPos;
-    public void OnTongued(Transform tongueOrigin, Transform pTransform)
+    private Vector3 hitPoint;
+    private TongueData tongueData;
+
+    public void OnTongued(Transform tongueOrigin, Transform pTransform, TongueData tongueData, Vector3 hitPoint)
     {
         playerTransform = pTransform;
 
+        this.hitPoint = hitPoint;
+        this.tongueData = tongueData;
+
         // Get true center of handle object
-        Vector3 centerOfMe = new Vector3
+        Vector3 centerOfMe = new
         (
             transform.position.x - 0.5f,
             transform.position.y - 0.5f,
@@ -37,13 +41,15 @@ public class PullHandle : MonoBehaviour, ITongueable
             pullTo = centerOfMe + new Vector3(0f, 0f, Mathf.Sign(toPlayer.z));
         }
 
-        pullTimer = pullSpeed;
+        pullTimer = Constants.TONGUE_Speed / 2;
         initPos = playerTransform.position;
 
-        Timers.UntilThen(pullSpeed, () => { PullToHandle(); }, () => { } );
+        Timers.UntilThen(Constants.TONGUE_Speed / 2, () => { PullToHandle(); }, () => { tongueData.ResetTongue(); });
     }
     private void PullToHandle()
     {
+        tongueData.StayAttached(hitPoint);
+
         pullTimer -= Time.deltaTime;
 
         if (pullTimer <= 0f)
@@ -52,7 +58,7 @@ public class PullHandle : MonoBehaviour, ITongueable
             return;
         }
 
-        float t = 1f - (pullTimer / pullSpeed); 
+        float t = 1f - (pullTimer / (Constants.TONGUE_Speed / 2)); 
         t = 1f - (1f - t) * (1f - t); // Ease Out code
 
         playerTransform.position = Vector3.Lerp(initPos, pullTo, t);

@@ -6,4 +6,11 @@ public static class Constants
 
     public static int LAYER_MovingPlatform = LayerMask.GetMask("MovingPlatform");
     public static int LAYER_Tongueable = LayerMask.GetMask("Tongueable");
+
+    // Game Specific
+    public static float TONGUE_Thickness = 1f;
+    // Will half this a lot - so extend 0.2f and retract 0.2f
+    public const float TONGUE_Speed = 0.4f;
+
+    
 }
