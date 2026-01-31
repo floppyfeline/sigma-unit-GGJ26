@@ -5,16 +5,20 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerColourManager : Colourable
 {
     private bool _isColoured = false;
+    public bool IsHidden { get; private set; }
     private bool _isHidden = false;
     [SerializeField] private float _colourTime = 1.0f;
     [SerializeField]private TileColour _standingOnColour = TileColour.None;
     [SerializeField] private Color _baseColour;
 
+    public UnityEvent OnColourPicked;
+    public UnityEvent OnColourReset;
     public UnityEvent OnHide;
     public UnityEvent OnShow;
     Color _currentColour;
     Timer _transitionTimer;
     float _transitionTime = 0f;
+
     protected override void Start()
     {
         base.Start();
@@ -30,16 +34,26 @@ public class PlayerColourManager : Colourable
         inputs.Jump.performed += ctx => ResetColour();
         inputs.LaunchTongue.performed += ctx => ResetColour();
 
+        OnHide.AddListener(() => IsHidden = true);
+        OnShow.AddListener(() => IsHidden = false);
+
         SetColour(_baseColour);
         _currentColour = _baseColour;
     }
     public override void SetColour(TileColour colour, LevelPaletteStruct palette)
     {
+        if(colour == TileColour.None || colour == Colour)
+        {
+            Colour = TileColour.None;
+            ResetColour();
+            return;
+        }
         Colour = colour;
         Color target = GetColourFromPalette(palette);
         StartColourTransition(target);
         _isColoured = true;
         CheckForHidden();
+        OnColourPicked?.Invoke();
     }
     public void StartColourTransition(Color targetColour)
     {
@@ -62,7 +76,7 @@ public class PlayerColourManager : Colourable
     {
         StartColourTransition(_baseColour);
         _isColoured = false;
-        OnShow?.Invoke();
+        OnColourReset?.Invoke();
         CheckForHidden();
     }
     public void CheckForHidden()

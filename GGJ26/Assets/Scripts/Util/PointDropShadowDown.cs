@@ -18,6 +18,7 @@ public class PointDropShadowDown : MonoBehaviour
         _projector = GetComponent<DecalProjector>();
         _originalSize = _projector.size;
         _offset = transform.position - _targetRigidbody.position;
+        _targetCollider = _targetRigidbody.GetComponent<SphereCollider>();
     }
     void Update()
     {
@@ -35,7 +36,7 @@ public class PointDropShadowDown : MonoBehaviour
             Vector3.down,
             out RaycastHit hit,
             Mathf.Infinity,
-            _detectedGroundLayers
+            _detectedGroundLayers, QueryTriggerInteraction.Ignore
         ) ? hit.distance + _projectionDepthBuffer - _targetCollider.radius : 0f;
 
         Vector3 basePosition = _useManualOffset ? _manualOffset.position : _targetRigidbody.position;

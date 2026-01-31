@@ -173,6 +173,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3316394684898301246, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316394684898301246, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
+      propertyPath: _projectionDepthBuffer
+      value: -0.17
+      objectReference: {fileID: 0}
     - target: {fileID: 4337542781569176131, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -244,7 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PointDropShadowDown
   _maxDistance: 2
   _targetRigidbody: {fileID: 689762659}
-  _projectionDepthBuffer: 0.01
+  _projectionDepthBuffer: -0.15
   _detectedGroundLayers:
     serializedVersion: 2
     m_Bits: 65
