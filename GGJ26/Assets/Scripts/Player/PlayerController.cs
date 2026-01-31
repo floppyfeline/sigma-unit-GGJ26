@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInputs moveInput;
     private Rigidbody rb;
+    private bool movementEnabled = true;
 
     [SerializeField] private Transform visualTransform;
 
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
+        if(movementEnabled) HandleMovement();
 
         HandleParenting();
     }
@@ -58,22 +59,26 @@ public class PlayerController : MonoBehaviour
         }
         
         #region Clamp rotation to 45° Steps
+
         if (moveInput.Move != Vector2.zero)
         {
-            Vector3 zeroDir = new Vector3(-1f, 0f, 1f).normalized;
+            Vector3 moveDir =
+                camRight * moveInput.Move.x +
+                camForward * moveInput.Move.y;
 
-            Vector3 moveDir = camRight * moveInput.Move.x + camForward * (-moveInput.Move.y);
             moveDir.y = 0f;
             moveDir.Normalize();
 
-            Vector2 zero2D = new Vector2(zeroDir.x, zeroDir.z);
+            // 0° reference = world +Z
             Vector2 move2D = new Vector2(moveDir.x, moveDir.z);
 
-            float angle = Vector2.SignedAngle(zero2D, move2D);
+            float angle = Mathf.Atan2(move2D.x, move2D.y) * Mathf.Rad2Deg;
+
             float snapped = Mathf.Round(angle / 45f) * 45f;
 
             visualTransform.rotation = Quaternion.Euler(0f, snapped, 0f);
         }
+
         #endregion
     }
     private void HandleParenting()
@@ -92,5 +97,11 @@ public class PlayerController : MonoBehaviour
     public void Jump()
     {
         if(groundCheck.IsGrounded) rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+    }
+
+    public void ToggleMovement(bool toggle)
+    {
+        movementEnabled = toggle;
+        rb.linearVelocity = Vector3.zero;
     }
 }

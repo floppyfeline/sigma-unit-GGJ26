@@ -62,7 +62,13 @@ using UnityEngine.InputSystem;
             if(Actions != null) Actions.Player.Enable();
 
             Jump.performed += ctx => playerController.Jump();
-            LaunchTongue.performed += ctx => tongueControl.LaunchTongue();
+
+            LaunchTongue.started += ctx => tongueControl.ToggleRotation(true);
+            LaunchTongue.started += ctx => playerController.ToggleMovement(false);
+
+
+            LaunchTongue.canceled += ctx => tongueControl.LaunchTongue();
+            LaunchTongue.canceled += ctx => Timers.After(0.15f, () =>playerController.ToggleMovement(true));
         }
         private void OnDisable()
         {
@@ -89,6 +95,7 @@ using UnityEngine.InputSystem;
                 Move = Move.ReadValue<Vector2>()
             };
             playerController.SetInputs(inputs);
+            tongueControl.SetInputs(inputs, playerController.transform);
         }
 
         void Update()

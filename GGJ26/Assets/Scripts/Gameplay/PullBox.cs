@@ -10,13 +10,25 @@ public class PullBox : MonoBehaviour, ITongueable
     private float pullTimer;
     private Vector3 initPos;
 
-    public void OnTongued(Transform tongueOrigin)
+    public void OnTongued(Transform tongueOrigin, Transform playerTransform)
     {
         pulling = true;
-        pullTo = tongueOrigin.position;
+        Vector3 clampedTonguePos = tongueOrigin.position;
+        clampedTonguePos += new Vector3(0.5f, 0.5f, 0.5f);
+
+        clampedTonguePos = new Vector3
+        (
+            Mathf.RoundToInt(clampedTonguePos.x),
+            Mathf.RoundToInt(clampedTonguePos.y),
+            Mathf.RoundToInt(clampedTonguePos.z)
+        );
+
+        pullTo = clampedTonguePos;
 
         pullTimer = pullSpeed;
         initPos = transform.position;
+
+        Timers.UntilThen(pullSpeed, () => { PullToPlayer(); }, () => { pulling = false;} );
     }
     
     private void PullToPlayer()
@@ -34,15 +46,5 @@ public class PullBox : MonoBehaviour, ITongueable
         t = 1f - (1f - t) * (1f - t); // Ease Out code
 
         transform.position = Vector3.Lerp(initPos, pullTo, t);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(pulling)
-        {
-            PullToPlayer();
-        }
     }
 }
