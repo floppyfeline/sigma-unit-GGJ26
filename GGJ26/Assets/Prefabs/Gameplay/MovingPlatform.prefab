@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2796799758825142044}
   - component: {fileID: 1605152069619353797}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CubeSetup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   IsGenerated: 0
   _levelTiles: []
   _generatedTiles: {fileID: 0}
+  _testPalette: {fileID: 0}
 --- !u!1 &2602434442051536110
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5369094829524462513}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 652602374576483633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MovePoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,6 +176,14 @@ PrefabInstance:
     - target: {fileID: 3033567232418768313, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
       propertyPath: m_Name
       value: COLOR THIS
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033567232418768313, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065807582329227611, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8755670828968334489, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
       propertyPath: m_LocalPosition.x
