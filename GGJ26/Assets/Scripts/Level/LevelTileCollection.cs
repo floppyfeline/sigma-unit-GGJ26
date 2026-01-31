@@ -7,6 +7,7 @@ public class LevelTileCollection : InspectorAttributes
     public bool IsGenerated = false;
     [SerializeField] private List<ColourTile> _levelTiles = new List<ColourTile>();
     [SerializeField] private LevelTileCollection _generatedTiles;
+
     [MethodButton("Collect Tiles In Children")]
     public void CollectTiles()
     {
@@ -27,23 +28,31 @@ public class LevelTileCollection : InspectorAttributes
     [MethodButton("Set Test Palette")]
     public void DebugSetTestPalette()
     {
-        SetColours(GetTestPalette());
+        Timers.UntilThen(1f, () =>
+        { // do this while
+        }, () =>{ // do this after
+        });
+
+        SetTileColours(GetTestPalette());
     }
-    public void SetColours(LevelPaletteStruct palette)
+
+    public void SetTileColours(LevelPaletteStruct palette)
     {
         foreach (ColourTile tile in _levelTiles)
         {
-            tile.SetTileColour(palette);
+            tile.SetColour(tile.Colour, palette);
         }
     }
     [MethodButton("Generate Collection")]
     public void GenerateCollection()
     {
+
         if (IsGenerated)
         {
             Debug.LogWarning("Cannot generate collection from an already generated collection.");
             return;
         }
+        CollectTiles();
         if(_generatedTiles != null)
         {
             DestroyImmediate(_generatedTiles.gameObject);
@@ -82,8 +91,8 @@ public class LevelTileCollection : InspectorAttributes
                         tileCube.name = $"{tile.name}_Cube_{x}_{y}_{z}";
                         tileCube.transform.SetParent(newCollection.transform);
 
-                        ColourTile cubeColourTile = tileCube.AddComponent<ColourTile>();
-                        cubeColourTile.SetTileColour(tile.Colour, GetTestPalette());
+                        ColourTile cubeColourTile = tileCube.GetComponent<ColourTile>();
+                        cubeColourTile.SetColour(tile.Colour, GetTestPalette());
                         _generatedTiles._levelTiles.Add(cubeColourTile);
                     }
                 }
