@@ -12,7 +12,7 @@ public class TongueControl : MonoBehaviour
     {
         ToggleRotation(false);
 
-        if (Physics.SphereCast(transform.position, 0.5f, transform.forward, out RaycastHit hit, tongueRange, Constants.LAYER_Tongueable))
+        if (Physics.SphereCast(transform.position, 0.25f, transform.forward, out RaycastHit hit, tongueRange, Constants.LAYER_Tongueable))
         {
             if (hit.transform.TryGetComponent(out ITongueable tongueable))
             {

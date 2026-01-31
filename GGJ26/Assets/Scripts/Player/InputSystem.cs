@@ -68,7 +68,7 @@ using UnityEngine.InputSystem;
 
 
             LaunchTongue.canceled += ctx => tongueControl.LaunchTongue();
-            LaunchTongue.canceled += ctx => Timers.After(0.15f, () =>playerController.ToggleMovement(true));
+            LaunchTongue.canceled += ctx => Timers.After(0.25f, () =>playerController.ToggleMovement(true));
         }
         private void OnDisable()
         {
