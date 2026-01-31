@@ -10,16 +10,14 @@ public class ColourTile : Colourable
     }
     public void CollectColourables()
     {
-        MeshRenderer[] rend = GetComponentsInChildren<MeshRenderer>();
-        _colourables = new List<MeshRenderer>(rend);
+        Renderer[] rend = GetComponentsInChildren<Renderer>();
+        _colourables = new List<Renderer>(rend);
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered by: " + other.name, other);
         if (other.CompareTag("Player"))
         { 
             PlayerColourManager playerColourManager = other.GetComponentInParent<PlayerColourManager>();
-            Debug.Log("Player entered tile of colour: " + Colour.ToString());
             if (playerColourManager != null)
             {
                 playerColourManager.OnFloorChange(Colour);

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56bfc85556e080b4e93f5c70d44b0f18, type: 3}
-  m_Name: TestPalette
+  m_Name: Lvl4Palette
   m_EditorClassIdentifier: Assembly-CSharp::LevelPalette
   palette:
-    Color1: {r: 0.97873545, g: 1, b: 0, a: 0}
-    Color2: {r: 0.19503021, g: 0, b: 1, a: 0}
-    Color3: {r: 0, g: 1, b: 0.5429685, a: 0}
-    Color4: {r: 1, g: 0, b: 0.4916792, a: 0}
-    None: {r: 0.30997294, g: 0.30997294, b: 0.30997294, a: 0}
-    ShadowColor: {r: 0, g: 0, b: 0, a: 0}
+    Color1: {r: 1, g: 0.831254, b: 0.10849059, a: 0}
+    Color2: {r: 1, g: 0.7214002, b: 0.1462264, a: 0}
+    Color3: {r: 1, g: 0.46666667, b: 0.23921569, a: 0}
+    Color4: {r: 0.9607843, g: 0.33333334, b: 0.21176471, a: 0}
+    None: {r: 0, g: 0, b: 0, a: 0}
+    ShadowColor: {r: 0.49056602, g: 0.28462085, b: 0.3903933, a: 0}
