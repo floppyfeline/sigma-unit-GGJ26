@@ -5,7 +5,7 @@ using System;
 public class Colourable : InspectorAttributes
 {
     [SerializeField] public TileColour Colour;
-    [SerializeField] protected List<MeshRenderer> _colourables;
+    [SerializeField] protected List<Renderer> _colourables;
     public Action<TileColour> OnColourChanged;
     protected virtual void Start()
     {
@@ -32,6 +32,8 @@ public class Colourable : InspectorAttributes
                 return palette.Color3;
             case TileColour.Fourth:
                 return palette.Color4;
+                case TileColour.None:
+                    return palette.None;
             default:
                 return Color.black;
         }
@@ -40,12 +42,18 @@ public class Colourable : InspectorAttributes
     {
         Colour = colour;
         var block = new MaterialPropertyBlock();
-        foreach (MeshRenderer renderer in _colourables)
+        foreach (Renderer renderer in _colourables)
         {
-            renderer.GetPropertyBlock(block);
-            block.SetColor("_TileColour", GetColourFromPalette(palette));
-            block.SetColor("_ShadowColour", palette.ShadowColor);
-            renderer.SetPropertyBlock(block, 0);
+            int materials = renderer.sharedMaterials.Length;
+            Debug.Log(materials);
+            for (int i = 0; i < materials; i++)
+            {
+                renderer.GetPropertyBlock(block);
+                block.SetColor("_TileColour", GetColourFromPalette(palette));
+                block.SetColor("_ShadowColour", palette.ShadowColor);
+                renderer.SetPropertyBlock(block, i);
+
+            }
         }
         OnColourChanged?.Invoke(Colour);
     }
