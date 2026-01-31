@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 254286956992464856}
   - component: {fileID: 9204026319496400846}
   - component: {fileID: 1483787093973016077}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,11 +48,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5815017fd9fde4f4f9b73eba5bfbf7aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveAlongPath
+  moveSpeed: 1
   waitTime: 0
   interpolationType: 3
+  interpolationIntensity: 1
   pointObject: {fileID: 652602374576483633}
   movePoints:
-  - {fileID: 5369094829524462513}
+  - {x: 2.5, y: 2.9999998, z: 16.5}
 --- !u!33 &254286956992464856
 MeshFilter:
   m_ObjectHideFlags: 0

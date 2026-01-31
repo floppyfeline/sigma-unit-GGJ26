@@ -18,6 +18,7 @@ using UnityEngine.InputSystem;
         // INPUT ACTIONS
         public InputAction Move { get; private set; }
         public InputAction Jump { get; private set; }
+        public InputAction LaunchTongue { get; private set; }
         public InputAction Color1 { get; private set; }
         public InputAction Color2 { get; private set; }
         public InputAction Color3 { get; private set; }
@@ -25,9 +26,9 @@ using UnityEngine.InputSystem;
         public InputAction ToggleMenu { get; private set; }
 
         private PlayerController playerController;
+        [SerializeField] private TongueControl tongueControl;
 
         #endregion
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
             Actions = new InputActions();
@@ -48,6 +49,7 @@ using UnityEngine.InputSystem;
             // Default Inputs
             Move = Actions.Player.Move;
             Jump = Actions.Player.Jump;
+            LaunchTongue = Actions.Player.LaunchTongue;
             Color1 = Actions.Player.Color1;
             Color2 = Actions.Player.Color2;
             Color3 = Actions.Player.Color3;
@@ -60,6 +62,7 @@ using UnityEngine.InputSystem;
             if(Actions != null) Actions.Player.Enable();
 
             Jump.performed += ctx => playerController.Jump();
+            LaunchTongue.performed += ctx => tongueControl.LaunchTongue();
         }
         private void OnDisable()
         {
@@ -86,7 +89,6 @@ using UnityEngine.InputSystem;
                 Move = Move.ReadValue<Vector2>()
             };
             playerController.SetInputs(inputs);
-
         }
 
         void Update()
