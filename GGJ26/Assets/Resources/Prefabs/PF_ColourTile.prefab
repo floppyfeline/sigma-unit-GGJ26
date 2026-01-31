@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3443450218199408129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3484338396935917427}
+  - component: {fileID: 8832754361053499559}
+  m_Layer: 0
+  m_Name: ColourTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3484338396935917427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443450218199408129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3061732744687123773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8832754361053499559
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443450218199408129}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.75, y: 2.44, z: 0.75}
+  m_Center: {x: -0.5, y: 0.35, z: -0.5}
 --- !u!1001 &3133871521731507856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18,7 +71,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ddb62a44be92ef4d84db291b16d6a80, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ddb62a44be92ef4d84db291b16d6a80, type: 3}
       propertyPath: m_LocalRotation.w
@@ -95,6 +148,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0ddb62a44be92ef4d84db291b16d6a80, type: 3}
   m_PrefabInstance: {fileID: 3133871521731507856}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &4376419299286739476 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 0ddb62a44be92ef4d84db291b16d6a80, type: 3}
+  m_PrefabInstance: {fileID: 3133871521731507856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6052575730601666980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,6 +169,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6609750890581001097, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
+      propertyPath: '_colourables.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4376419299286739476}
     - target: {fileID: 8755670828968334489, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.52848
@@ -158,6 +220,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8755670828968334489, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3240066114679050619}
+    - targetCorrespondingSourceObject: {fileID: 8755670828968334489, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3484338396935917427}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
 --- !u!4 &3061732744687123773 stripped
