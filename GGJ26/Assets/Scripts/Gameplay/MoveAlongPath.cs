@@ -2,28 +2,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum InterpolationType
-        {
-            Linear,
-            EaseIn,
-            EaseOut,
-            EaseInOut
-        }
+    {
+        Linear,
+        EaseIn,
+        EaseOut,
+        EaseInOut
+    }
+public enum MoveLoopType
+{
+    PingPong,
+    Loop
+}
+
 public class MoveAlongPath : InspectorAttributes
 {
     [SerializeField] private float moveSpeed = 1f; // units per second
     [SerializeField] private float waitTime = 0f;
+
+    [Header("Interpolation")]
     [SerializeField] private InterpolationType interpolationType = InterpolationType.EaseInOut;
     [SerializeField] private float interpolationIntensity = 1f;
+
+    [Header("Looping")]
+    [SerializeField] private MoveLoopType loopType = MoveLoopType.PingPong;
+
+    [Header("Points")]
     [SerializeField] private Transform pointObject;
 
-    public List<Vector3> movePoints;
+    public List<Vector3> movePoints = new();
 
     private int currentPointIndex;
     private float segmentProgress;
     private float segmentLength;
+
     private bool waiting;
     private float waitTimer;
-    private int direction = 1; // 1 = forward, -1 = backward
+
+    // Used only for PingPong
+    private int direction = 1;
 
     private Vector3 segmentStart;
     private Vector3 segmentEnd;
@@ -38,12 +54,11 @@ public class MoveAlongPath : InspectorAttributes
     {
         movePoints.Clear();
 
-        if (pointObject == null) return;
+        if (pointObject == null)
+            return;
 
         for (int i = 0; i < pointObject.childCount; i++)
-        {
             movePoints.Add(pointObject.GetChild(i).position);
-        }
     }
 
     private void Start()
@@ -56,6 +71,8 @@ public class MoveAlongPath : InspectorAttributes
         }
 
         currentPointIndex = 0;
+        direction = 1;
+
         transform.position = movePoints[0];
         SetupNextSegment();
     }
@@ -65,18 +82,21 @@ public class MoveAlongPath : InspectorAttributes
         if (waiting)
         {
             waitTimer -= Time.deltaTime;
+
             if (waitTimer <= 0f)
             {
                 waiting = false;
                 SetupNextSegment();
             }
+
             return;
         }
 
         segmentProgress += moveSpeed / segmentLength * Time.deltaTime;
-        float t = Mathf.Clamp01(segmentProgress);
 
+        float t = Mathf.Clamp01(segmentProgress);
         float easedT = ApplyEasing(t);
+
         transform.position = Vector3.Lerp(segmentStart, segmentEnd, easedT);
 
         if (t >= 1f)
@@ -92,18 +112,32 @@ public class MoveAlongPath : InspectorAttributes
 
         segmentStart = movePoints[currentPointIndex];
 
-        int nextIndex = currentPointIndex + direction;
+        int nextIndex = currentPointIndex;
 
-        // Reverse direction at the ends
-        if (nextIndex >= movePoints.Count)
+        switch (loopType)
         {
-            direction = -1;
-            nextIndex = currentPointIndex + direction;
-        }
-        else if (nextIndex < 0)
-        {
-            direction = 1;
-            nextIndex = currentPointIndex + direction;
+            case MoveLoopType.PingPong:
+            {
+                nextIndex += direction;
+
+                if (nextIndex >= movePoints.Count)
+                {
+                    direction = -1;
+                    nextIndex = currentPointIndex + direction;
+                }
+                else if (nextIndex < 0)
+                {
+                    direction = 1;
+                    nextIndex = currentPointIndex + direction;
+                }
+                break;
+            }
+
+            case MoveLoopType.Loop:
+            {
+                nextIndex = (currentPointIndex + 1) % movePoints.Count;
+                break;
+            }
         }
 
         currentPointIndex = nextIndex;
@@ -111,10 +145,9 @@ public class MoveAlongPath : InspectorAttributes
 
         segmentLength = Vector3.Distance(segmentStart, segmentEnd);
 
+        // Skip zero-length segments safely
         if (segmentLength <= Mathf.Epsilon)
-        {
             SetupNextSegment();
-        }
     }
 
     private float ApplyEasing(float t)

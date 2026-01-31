@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 8414231689166690423}
   - component: {fileID: 5853365446005327347}
   m_Layer: 7
-  m_Name: PullBox
+  m_Name: PF_PullBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -58,9 +58,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2971817386519703587}
-  - component: {fileID: 6264867649478261601}
+  - component: {fileID: 2675304116233775253}
   m_Layer: 6
-  m_Name: Gate
+  m_Name: PF_MovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ Transform:
   - {fileID: 2796799758825142044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6264867649478261601
+--- !u!114 &2675304116233775253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,14 +92,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2602434442051536110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 377583b8c6e1bfb4295947fbb6708276, type: 3}
+  m_Script: {fileID: 11500000, guid: 5815017fd9fde4f4f9b73eba5bfbf7aa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Gate
+  m_EditorClassIdentifier: Assembly-CSharp::MoveAlongPath
   moveSpeed: 1
+  waitTime: 0
   interpolationType: 3
   interpolationIntensity: 1
   pointObject: {fileID: 652602374576483633}
-  looping: 0
   movePoints:
   - {x: 0, y: 0, z: 0}
 --- !u!1 &2718747063679648116
