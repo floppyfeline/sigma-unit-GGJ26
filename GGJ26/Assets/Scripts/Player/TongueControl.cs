@@ -27,13 +27,14 @@ public class TongueControl : MonoBehaviour
     [SerializeField] private Transform tongueOrigin;
     [SerializeField] private Transform tongueVisualOrigin;
     [SerializeField] private float tongueRange = 5f;
-    [Tooltip("Time it takes for tongue to reach target")]
+    [SerializeField] private float tongueCooldown = 1f;
 
     private PlayerInputs moveInput;
     private Transform playerTransform;
     [SerializeField] private TongueData tongueData;
     private bool rotationEnabled = false;
     private bool tongueLaunched = false;
+    private bool tongueOnCooldown = false;
     private float tongueTimer = 0f;
     private ITongueable currentTarget;
     private Vector3 hitPoint;
@@ -45,7 +46,10 @@ public class TongueControl : MonoBehaviour
 
     public void LaunchTongue()
     {
-        Debug.Log("Launching Tongue");
+        if (tongueOnCooldown) return;
+
+        tongueOnCooldown = true;
+        Timers.After(tongueCooldown, () => { tongueOnCooldown = false; });
 
         ToggleRotation(false);
 
@@ -68,6 +72,8 @@ public class TongueControl : MonoBehaviour
             currentTarget = null;
             hitPoint = transform.position + (transform.forward * tongueRange);
             tongueLaunched = true;
+
+            tongueTimer = Constants.TONGUE_Speed / 2;
         }
     }
 

@@ -14,7 +14,7 @@ public class PullBox : MonoBehaviour, ITongueable
         hitPointOffset = hitPoint - transform.position;
         this.tongueData = tongueData;
 
-        Vector3 clampedTonguePos = tongueOrigin.position;
+        Vector3 clampedTonguePos = tongueOrigin.position + tongueOrigin.forward * 0.75f;;
         clampedTonguePos += new Vector3(0.5f, 0.5f, 0.5f);
 
         clampedTonguePos = new Vector3
