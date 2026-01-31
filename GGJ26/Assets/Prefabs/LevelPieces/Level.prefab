@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 7726191638510765688}
   - {fileID: 5160741004636111915}
   - {fileID: 1235643304783722181}
+  - {fileID: 4271006183160184883}
   _generatedTiles: {fileID: 0}
 --- !u!1001 &2027798456869308322
 PrefabInstance:
@@ -477,6 +478,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8755670828968334489, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
   m_PrefabInstance: {fileID: 6989344817472177082}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4271006183160184883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6609750890581001097, guid: ac7b58fff5fcbef43849a43224ab79d7, type: 3}
+  m_PrefabInstance: {fileID: 6989344817472177082}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f48d85dc510dd4f934c714fd325cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColourTile
 --- !u!1001 &7926305807832956200
 PrefabInstance:
   m_ObjectHideFlags: 0

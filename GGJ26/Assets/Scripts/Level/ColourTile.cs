@@ -15,6 +15,7 @@ public class ColourTile : Colourable
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger entered by: " + other.name, other);
         if (other.CompareTag("Player"))
         { 
             PlayerColourManager playerColourManager = other.GetComponentInParent<PlayerColourManager>();

@@ -23,7 +23,8 @@ public class LevelTileCollection : InspectorAttributes
             Color2 = Color.green,
             Color3 = Color.blue,
             Color4 = Color.yellow,
-            None = Color.black
+            None = Color.grey,
+            ShadowColor = Color.black
         };
     }
     [MethodButton("Set Test Palette")]
@@ -33,7 +34,6 @@ public class LevelTileCollection : InspectorAttributes
         { // do this while
         }, () =>{ // do this after
         });
-
         SetTileColours(GetTestPalette());
     }
 
@@ -41,6 +41,7 @@ public class LevelTileCollection : InspectorAttributes
     {
         foreach (ColourTile tile in _levelTiles)
         {
+            tile.CollectColourables();
             tile.SetColour(tile.Colour, palette);
         }
     }
@@ -68,6 +69,7 @@ public class LevelTileCollection : InspectorAttributes
             BoxCollider[] tileColliders = tile.GetComponentsInChildren<BoxCollider>();
             foreach (BoxCollider col in tileColliders)
             {
+                Debug.Log(col);
                 Bounds bounds = col.bounds;
 
                 int width = Mathf.RoundToInt(bounds.size.x);
@@ -101,7 +103,7 @@ public class LevelTileCollection : InspectorAttributes
                     }
                 }
             }
-            tile.gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
     }
 }
