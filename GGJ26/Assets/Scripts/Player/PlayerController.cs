@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class PlayerController : MonoBehaviour
     
     [Header("Movement Parameters")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float jumpTime = 2f;
+    [SerializeField] private float _jumpHeight = 5f;
     [SerializeField] private float gravityBuildup = 0.05f;
 
     private PlayerInputs moveInput;
@@ -17,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private bool movementEnabled = true;
 
     [SerializeField] private Transform visualTransform;
-
+    Timer _jumpTimer;
+    private float _jumpTimePassed = 0f;
     public Action<bool> OnMove;
     public Action<bool> OnTongue;
     void Start()
@@ -107,7 +110,31 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump()
     {
-        if(groundCheck.IsGrounded) rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+        //if(groundCheck.IsGrounded) rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+        if(groundCheck.IsGrounded)
+        {
+            if(_jumpTimer != null)
+            {
+                Timers.Remove(_jumpTimer);
+                _jumpTimer = null;
+            }
+            _jumpTimer = Timers.UntilThen(jumpTime, () =>
+            {
+                _jumpTimePassed += Time.deltaTime;
+                // 4 = exponent
+                float yVel = -_jumpHeight * 2 * (Mathf.Pow((_jumpTimePassed - jumpTime) / jumpTime, 2 - 1));
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, yVel, rb.linearVelocity.z);
+                if(yVel < 0)
+                {
+                    Timers.Remove(_jumpTimer);
+                    _jumpTimer = null;
+                    _jumpTimePassed = 0f;
+                }
+            }, () =>
+            {
+                _jumpTimer = null;
+            });
+        }
     }
 
     public void ToggleMovement(bool toggle)

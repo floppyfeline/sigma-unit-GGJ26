@@ -124,6 +124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3695215245908803934}
   - {fileID: 4555979126496392645}
   - {fileID: 4564747635510062101}
   - {fileID: 4548936301672548964}
@@ -146,8 +147,9 @@ MonoBehaviour:
   groundCheck: {fileID: 7672353310172532294}
   wallCheck: {fileID: 5098351792308592058}
   moveSpeed: 5
-  jumpForce: 7.5
-  gravityBuildup: 0.1
+  jumpTime: 0.42
+  _jumpHeight: 2.82
+  gravityBuildup: 0.17
   visualTransform: {fileID: 4337542781569176131}
 --- !u!114 &6877319612649130983
 MonoBehaviour:
@@ -523,6 +525,87 @@ Transform:
   - {fileID: 5753842653891873954}
   m_Father: {fileID: 7778333796709618378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3504114684764783473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3695215245908803934}
+  - component: {fileID: 2158416877895064946}
+  - component: {fileID: 3316394684898301246}
+  m_Layer: 0
+  m_Name: Drop Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3695215245908803934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3504114684764783473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.31700003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4337542781569176131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2158416877895064946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3504114684764783473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: cf9903e51a0d17b4dbe59aa5afd21df8, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 4}
+  m_Size: {x: 1, y: 1, z: 8}
+  m_FadeFactor: 0.709
+  version: 1
+  m_DecalLayerMask: 1
+--- !u!114 &3316394684898301246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3504114684764783473}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2ecd6e0dbedb8469dd3fe319a0929f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointDropShadowDown
+  _maxDistance: 2
+  _targetRigidbody: {fileID: 6923659704283430631}
+  _projectionDepthBuffer: 0.01
+  _detectedGroundLayers:
+    serializedVersion: 2
+    m_Bits: 65
+  _useManualOffset: 0
+  _manualOffset: {fileID: 0}
 --- !u!1 &4062033925962139516
 GameObject:
   m_ObjectHideFlags: 0
