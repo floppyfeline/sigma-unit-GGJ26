@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 public class LevelTileCollection : InspectorAttributes
 {
-    private const string TILE_PREFAB_PATH = "Prefabs/PF_LayoutCubeOrigin";
+    private const string TILE_PREFAB_PATH = "Prefabs/PF_ColourTile";
     public bool IsGenerated = false;
     [SerializeField] private List<ColourTile> _levelTiles = new List<ColourTile>();
     [SerializeField] private LevelTileCollection _generatedTiles;
