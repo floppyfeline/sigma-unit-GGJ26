@@ -74,13 +74,11 @@ public class LevelTileCollection : InspectorAttributes
             BoxCollider[] tileColliders = tile.GetComponentsInChildren<BoxCollider>();
             foreach (BoxCollider col in tileColliders)
             {
-                Debug.Log(col);
                 Bounds bounds = col.bounds;
 
                 int width = Mathf.RoundToInt(bounds.size.x);
                 int length = Mathf.RoundToInt(bounds.size.z);
                 int height = Mathf.RoundToInt(bounds.size.y);
-                Debug.Log($"Generating tiles for {tile.name} with width {width}, length {length}, height {height}");
                 for (int z = 0; z < length; z++)
                 {
                     for (int x = 0; x < width; x++)
