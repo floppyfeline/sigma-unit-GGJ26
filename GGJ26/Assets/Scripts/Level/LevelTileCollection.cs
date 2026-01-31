@@ -23,7 +23,8 @@ public class LevelTileCollection : InspectorAttributes
             Color2 = Color.green,
             Color3 = Color.blue,
             Color4 = Color.yellow,
-            None = Color.black
+            None = Color.grey,
+            ShadowColor = Color.black
         };
     }
     [MethodButton("Set Test Palette")]

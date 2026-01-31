@@ -44,6 +44,7 @@ public class Colourable : InspectorAttributes
         {
             renderer.GetPropertyBlock(block);
             block.SetColor("_TileColour", GetColourFromPalette(palette));
+            block.SetColor("_ShadowColour", palette.ShadowColor);
             renderer.SetPropertyBlock(block, 0);
         }
         OnColourChanged?.Invoke(Colour);

@@ -49,4 +49,5 @@ public struct LevelPaletteStruct
     public Color Color3;
     public Color Color4;
     public Color None;
+    public Color ShadowColor;
 }
