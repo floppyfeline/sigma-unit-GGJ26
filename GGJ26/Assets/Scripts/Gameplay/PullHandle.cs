@@ -4,7 +4,6 @@ public class PullHandle : MonoBehaviour, ITongueable
 {
     [Tooltip("Time it takes for the player to reach the handle")]
     [SerializeField] private float pullSpeed = 0.2f;
-    private bool pulling = false;
     private Vector3 pullTo;
     private Transform playerTransform;
 
@@ -13,42 +12,35 @@ public class PullHandle : MonoBehaviour, ITongueable
     public void OnTongued(Transform tongueOrigin, Transform pTransform)
     {
         playerTransform = pTransform;
-        pulling = true;
 
+        // Get true center of handle object
         Vector3 centerOfMe = new Vector3
         (
             transform.position.x - 0.5f,
             transform.position.y - 0.5f,
             transform.position.z - 0.5f
         );
-        Vector3 towardPlayer = (playerTransform.position - centerOfMe).normalized;
 
-        Vector3 towardPlayerPos = transform.position + towardPlayer;
+        Vector3 toPlayer = playerTransform.position - centerOfMe;
 
-        Vector3 clampedTowardPlayerPos = towardPlayerPos;
-        clampedTowardPlayerPos += new Vector3(0.5f, 0.5f, 0.5f);
+        float dx = Mathf.Abs(toPlayer.x);
+        float dz = Mathf.Abs(toPlayer.z);
 
-        clampedTowardPlayerPos = new Vector3
-        (
-            Mathf.RoundToInt(clampedTowardPlayerPos.x),
-            Mathf.RoundToInt(clampedTowardPlayerPos.y),
-            Mathf.RoundToInt(clampedTowardPlayerPos.z)
-        );
-
-        pullTo = clampedTowardPlayerPos;
-
-        // Snap to grid
-        pullTo = new Vector3
-        (
-            pullTo.x - 0.5f,
-            pullTo.y - 0.5f,
-            pullTo.z - 0.5f
-        );
+        if (dx > dz)
+        {
+            // closer to X axis
+            pullTo = centerOfMe + new Vector3(Mathf.Sign(toPlayer.x), 0f, 0f);
+        }
+        else
+        {
+            // closer to Z axis
+            pullTo = centerOfMe + new Vector3(0f, 0f, Mathf.Sign(toPlayer.z));
+        }
 
         pullTimer = pullSpeed;
         initPos = playerTransform.position;
 
-        Timers.UntilThen(pullSpeed, () => { PullToHandle(); }, () => { pulling = false;} );
+        Timers.UntilThen(pullSpeed, () => { PullToHandle(); }, () => { } );
     }
     private void PullToHandle()
     {
@@ -56,7 +48,6 @@ public class PullHandle : MonoBehaviour, ITongueable
 
         if (pullTimer <= 0f)
         {
-            pulling = false;
             playerTransform.position = pullTo;
             return;
         }
