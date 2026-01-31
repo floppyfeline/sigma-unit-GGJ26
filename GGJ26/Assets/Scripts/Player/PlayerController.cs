@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Transform playerSpace;
     [SerializeField] private GroundedCheck groundCheck;
     [SerializeField] private WallCheck wallCheck;
     
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleMovement();
+
+        HandleParenting();
     }
 
     public void SetInputs(PlayerInputs inputs)
@@ -73,7 +76,19 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
     }
+    private void HandleParenting()
+    {
+        RaycastHit hit;
 
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, Constants.LAYER_MovingPlatform))
+        {
+            transform.SetParent(hit.transform, true);
+        }
+        else
+        {
+            transform.SetParent(playerSpace, true);
+        }
+    }
     public void Jump()
     {
         if(groundCheck.IsGrounded) rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
