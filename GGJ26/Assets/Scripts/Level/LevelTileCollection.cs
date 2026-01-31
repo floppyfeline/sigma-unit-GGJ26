@@ -88,6 +88,7 @@ public class LevelTileCollection : InspectorAttributes
                     }
                 }
             }
+            tile.gameObject.SetActive(false);
         }
     }
 }
