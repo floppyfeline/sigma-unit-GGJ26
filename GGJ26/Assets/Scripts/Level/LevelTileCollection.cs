@@ -7,6 +7,7 @@ public class LevelTileCollection : InspectorAttributes
     public bool IsGenerated = false;
     [SerializeField] private List<ColourTile> _levelTiles = new List<ColourTile>();
     [SerializeField] private LevelTileCollection _generatedTiles;
+    [SerializeField] private LevelPalette _testPalette;
 
     [MethodButton("Collect Tiles In Children")]
     public void CollectTiles()
@@ -23,19 +24,21 @@ public class LevelTileCollection : InspectorAttributes
             Color2 = Color.green,
             Color3 = Color.blue,
             Color4 = Color.yellow,
-            None = Color.grey,
-            ShadowColor = Color.black
+            None = Color.grey
         };
     }
     [MethodButton("Set Test Palette")]
     public void DebugSetTestPalette()
     {
-        Timers.UntilThen(1f, () =>
-        { // do this while
-        }, () =>{ // do this after
-        });
-        SetTileColours(GetTestPalette());
-    }
+        if (_testPalette == null)
+        {
+            SetTileColours(GetTestPalette());
+        }
+        else
+        {
+            SetTileColours(_testPalette.palette);
+        }
+        }
 
     public void SetTileColours(LevelPaletteStruct palette)
     {
@@ -59,6 +62,7 @@ public class LevelTileCollection : InspectorAttributes
             DestroyImmediate(_generatedTiles.gameObject);
         }
         GameObject newCollection = new GameObject("Generated Tiles");
+        newCollection.transform.parent = this.transform.parent;
         _generatedTiles = newCollection.AddComponent<LevelTileCollection>();
         _generatedTiles.IsGenerated = true;
         foreach (ColourTile tile in _levelTiles)

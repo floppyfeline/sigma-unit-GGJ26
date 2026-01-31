@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform visualTransform;
 
+    public Action<bool> OnMove;
+    public Action<bool> OnTongue;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,6 +28,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if(movementEnabled) HandleMovement();
+        else OnMove?.Invoke(false);
 
         HandleParenting();
     }
@@ -39,9 +43,10 @@ public class PlayerController : MonoBehaviour
         if(moveInput.Move == Vector2.zero)
         {
             rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+            OnMove?.Invoke(false);
             return;
         }
-
+        OnMove?.Invoke(true);
         Vector3 camForward = moveInput.CameraRotation * Vector3.forward;
         Vector3 camRight   = moveInput.CameraRotation * Vector3.right;
 
