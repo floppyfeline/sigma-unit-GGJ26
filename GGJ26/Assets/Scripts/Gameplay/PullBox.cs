@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class PullBox : MonoBehaviour, ITongueable
 {
-    [Tooltip("Time it takes for the box to reach the player")]
-    [SerializeField] private float pullSpeed = 0.2f;
-    private bool pulling = false;
     private Vector3 pullTo;
 
     private float pullTimer;
     private Vector3 initPos;
+    private TongueData tongueData;
+    private Vector3 hitPointOffset;
 
-    public void OnTongued(Transform tongueOrigin, Transform playerTransform)
+    public void OnTongued(Transform tongueOrigin, Transform playerTransform, TongueData tongueData, Vector3 hitPoint)
     {
-        pulling = true;
+        hitPointOffset = hitPoint - transform.position;
+        this.tongueData = tongueData;
+
         Vector3 clampedTonguePos = tongueOrigin.position;
         clampedTonguePos += new Vector3(0.5f, 0.5f, 0.5f);
 
@@ -25,10 +26,10 @@ public class PullBox : MonoBehaviour, ITongueable
 
         pullTo = clampedTonguePos;
 
-        pullTimer = pullSpeed;
+        pullTimer = Constants.TONGUE_Speed / 2;
         initPos = transform.position;
 
-        Timers.UntilThen(pullSpeed, () => { PullToPlayer(); }, () => { pulling = false;} );
+        Timers.UntilThen(Constants.TONGUE_Speed / 2, () => { PullToPlayer(); }, () => { tongueData.ResetTongue(); });
     }
     
     private void PullToPlayer()
@@ -37,14 +38,15 @@ public class PullBox : MonoBehaviour, ITongueable
 
         if (pullTimer <= 0f)
         {
-            pulling = false;
             transform.position = pullTo;
             return;
         }
 
-        float t = 1f - (pullTimer / pullSpeed); 
+        float t = 1f - (pullTimer / (Constants.TONGUE_Speed / 2)); 
         t = 1f - (1f - t) * (1f - t); // Ease Out code
 
         transform.position = Vector3.Lerp(initPos, pullTo, t);
+
+        tongueData.StayAttached(transform.position + hitPointOffset);
     }
 }
