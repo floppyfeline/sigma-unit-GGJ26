@@ -7,11 +7,13 @@ public class WallCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.isTrigger) return;
         wallContacts++;
         UpdateWalled();
     }
     private void OnTriggerExit(Collider other)
     {
+        if(other.isTrigger) return;
         wallContacts--;
         UpdateWalled();
     }

@@ -36,6 +36,12 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
+        if(moveInput.Move == Vector2.zero)
+        {
+            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+            return;
+        }
+
         Vector3 camForward = moveInput.CameraRotation * Vector3.forward;
         Vector3 camRight   = moveInput.CameraRotation * Vector3.right;
 
