@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerColourManager : Colourable
 {
     private bool _isColoured = false;
-    private bool _isHidden = false;
+    public bool IsHidden { get; private set;  }
     [SerializeField] private float _colourTime = 1.0f;
     [SerializeField]private TileColour _standingOnColour = TileColour.None;
     [SerializeField] private Color _baseColour;
@@ -33,6 +33,9 @@ public class PlayerColourManager : Colourable
         inputs.Jump.performed += ctx => ResetColour();
         inputs.LaunchTongue.performed += ctx => ResetColour();
 
+        OnHide.AddListener(() => IsHidden = true);
+        OnShow.AddListener(() => IsHidden = false);
+
         SetColour(_baseColour);
         _currentColour = _baseColour;
     }
@@ -40,6 +43,7 @@ public class PlayerColourManager : Colourable
     {
         if(colour == TileColour.None || colour == Colour)
         {
+            Colour = TileColour.None;
             ResetColour();
             return;
         }

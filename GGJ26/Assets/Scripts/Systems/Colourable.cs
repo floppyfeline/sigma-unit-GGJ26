@@ -26,6 +26,8 @@ public class Colourable : InspectorAttributes
                 return palette.Color4;
                 case TileColour.None:
                     return palette.None;
+                case TileColour.Special:
+                    return palette.Special;
             default:
                 return Color.black;
         }
@@ -68,6 +70,6 @@ public class Colourable : InspectorAttributes
     }
     public enum TileColour
     {
-        First, Second, Third, Fourth, None
+        First, Second, Third, Fourth, None, Special
     }
 }
