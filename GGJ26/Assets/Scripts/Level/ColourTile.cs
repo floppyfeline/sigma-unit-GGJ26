@@ -11,10 +11,11 @@ public class ColourTile : Colourable
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         { 
-            PlayerColourManager playerColourManager = other.GetComponent<PlayerColourManager>();
-            if(playerColourManager != null)
+            PlayerColourManager playerColourManager = other.GetComponentInParent<PlayerColourManager>();
+            Debug.Log("Player entered tile of colour: " + Colour.ToString());
+            if (playerColourManager != null)
             {
                 playerColourManager.OnFloorChange(Colour);
             }

@@ -52,7 +52,6 @@ public class LevelTileCollection : InspectorAttributes
             Debug.LogWarning("Cannot generate collection from an already generated collection.");
             return;
         }
-        CollectTiles();
         if(_generatedTiles != null)
         {
             DestroyImmediate(_generatedTiles.gameObject);
@@ -78,9 +77,9 @@ public class LevelTileCollection : InspectorAttributes
                     for (int y = 0; y < height; y++)
                     {
                         Vector3 spawnPosition = new Vector3(
-                            bounds.min.x + x + 1,
+                            bounds.min.x + x +1,
                             bounds.min.y + y + 1,
-                            bounds.min.z + z
+                            bounds.min.z + z +1
                         );
                         GameObject tileCube = Instantiate(
                             Resources.Load<GameObject>(TILE_PREFAB_PATH),
