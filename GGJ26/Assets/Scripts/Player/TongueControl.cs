@@ -1,23 +1,73 @@
 using UnityEngine;
 
+[System.Serializable]
+public class TongueData
+{
+    // Will only be rotated and scaled on the Z
+    public Transform TongueExtent;
+    // Seperate object, so needs to be turned off indepentently
+    public Transform TongueTip;
+
+    public void ResetTongue()
+    {
+        TongueExtent.localScale = new Vector3(Constants.TONGUE_Thickness, Constants.TONGUE_Thickness, Constants.TONGUE_Thickness);
+        TongueExtent.rotation = Quaternion.identity;
+
+        TongueExtent.gameObject.SetActive(false);
+        TongueTip.gameObject.SetActive(false);
+    }
+    public void StayAttached(Vector3 target)
+    {
+        TongueExtent.rotation = Quaternion.LookRotation(target - TongueExtent.position).normalized;
+        TongueExtent.localScale = new Vector3(Constants.TONGUE_Thickness, Constants.TONGUE_Thickness, (TongueExtent.position - target).magnitude);
+    }
+}
 public class TongueControl : MonoBehaviour
 {
-    [SerializeField] private Transform tongueTo;
+    [SerializeField] private Transform tongueOrigin;
+    [SerializeField] private Transform tongueVisualOrigin;
     [SerializeField] private float tongueRange = 5f;
+    [Tooltip("Time it takes for tongue to reach target")]
 
     private PlayerInputs moveInput;
     private Transform playerTransform;
+    [SerializeField] private TongueData tongueData;
     private bool rotationEnabled = false;
+    private bool tongueLaunched = false;
+    private float tongueTimer = 0f;
+    private ITongueable currentTarget;
+    private Vector3 hitPoint;
+
+    void OnEnable()
+    {
+        tongueData.ResetTongue();
+    }
+
     public void LaunchTongue()
     {
+        Debug.Log("Launching Tongue");
+
         ToggleRotation(false);
+
+        tongueData.TongueExtent.gameObject.SetActive(true);
+        tongueData.TongueTip.gameObject.SetActive(true);
 
         if (Physics.SphereCast(transform.position, 0.25f, transform.forward, out RaycastHit hit, tongueRange, Constants.LAYER_Tongueable))
         {
             if (hit.transform.TryGetComponent(out ITongueable tongueable))
             {
-                tongueable.OnTongued(tongueTo, playerTransform);
+                currentTarget = tongueable;
+                tongueLaunched = true;
+                tongueTimer = Constants.TONGUE_Speed / 2;
+
+                hitPoint = hit.point;
             }
+        }
+        else
+        {
+            currentTarget = null;
+            hitPoint = transform.position + (transform.forward * tongueRange);
+            tongueLaunched = true;
         }
     }
 
@@ -67,10 +117,60 @@ public class TongueControl : MonoBehaviour
     private void Update()
     {
         if (rotationEnabled) HandleRotation();
+
+        if (tongueLaunched)
+        {
+            TravelTongue();
+        }
     }
     public void SetInputs(PlayerInputs inputs, Transform pTransform)
     {
         moveInput = inputs;
         playerTransform = pTransform;
+    }
+
+    private void TravelTongue()
+    {
+        // Look toward the hit point
+        tongueData.TongueExtent.rotation = Quaternion.LookRotation(hitPoint - tongueData.TongueExtent.position);
+        
+        // Scale the tongue's z axis with the exact distance between the tongue's origin and the hit point to connect the two over time
+        tongueData.TongueExtent.localScale = new Vector3
+        (
+            tongueData.TongueExtent.localScale.x,
+            tongueData.TongueExtent.localScale.y,
+            Mathf.Lerp(0f, Vector3.Distance(tongueData.TongueExtent.position, hitPoint), 1f - (tongueTimer / (Constants.TONGUE_Speed / 2)))
+        );
+        
+        // As soon as the tongue has reached the target, trigger the OnTongued Method on the Target
+        if (tongueTimer <= 0f)
+        {
+            if(currentTarget != null)
+            {
+                currentTarget.OnTongued(tongueVisualOrigin, playerTransform, tongueData, hitPoint);
+                tongueLaunched = false;
+            }
+            else
+            {
+                float fullLength = Vector3.Distance(tongueData.TongueExtent.position, hitPoint);
+
+                // 0 → 1 over the retract duration
+                float t = -tongueTimer / (Constants.TONGUE_Speed / 2);
+
+                tongueData.TongueExtent.localScale = new Vector3
+                (
+                    Constants.TONGUE_Thickness,
+                    Constants.TONGUE_Thickness,
+                    Mathf.Lerp(fullLength, 0f, t)
+                );
+
+                if (tongueTimer <= -Constants.TONGUE_Speed / 2)
+                {
+                    tongueData.ResetTongue();
+                    tongueLaunched = false;
+                }
+            }
+        }
+        tongueTimer -= Time.deltaTime;
     }
 }

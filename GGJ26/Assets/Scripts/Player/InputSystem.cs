@@ -61,14 +61,13 @@ using UnityEngine.InputSystem;
         {
             if(Actions != null) Actions.Player.Enable();
 
-            Jump.performed += ctx => playerController.Jump();
+            Jump.started += ctx => playerController.Jump();
 
             LaunchTongue.started += ctx => tongueControl.ToggleRotation(true);
             LaunchTongue.started += ctx => playerController.ToggleMovement(false);
 
-
             LaunchTongue.canceled += ctx => tongueControl.LaunchTongue();
-            LaunchTongue.canceled += ctx => Timers.After(0.25f, () =>playerController.ToggleMovement(true));
+            LaunchTongue.canceled += ctx => Timers.After(Constants.TONGUE_Speed / 2, () => playerController.ToggleMovement(true));
         }
         private void OnDisable()
         {

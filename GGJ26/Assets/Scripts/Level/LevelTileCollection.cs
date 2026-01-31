@@ -97,6 +97,7 @@ public class LevelTileCollection : InspectorAttributes
                                 Quaternion.identity,
                                 newCollection.transform
                             );
+                            tileCube.layer = tile.gameObject.layer;
                             tileCube.name = $"{tile.name}_Cube_{x}_{y}_{z}";
                             tileCube.transform.SetParent(newCollection.transform);
 

@@ -219,7 +219,7 @@ MonoBehaviour:
   groundCheck: {fileID: 2144046044}
   wallCheck: {fileID: 1399344552}
   moveSpeed: 3
-  jumpForce: 7.5
+  jumpForce: 7.8
   gravityBuildup: 0.1
   visualTransform: {fileID: 783119998}
 --- !u!4 &783119998
@@ -323,7 +323,64 @@ MonoBehaviour:
   - {fileID: 347757981}
   - {fileID: 1278613691}
   - {fileID: 120949699}
+  - {fileID: 1236632995}
+  _colourTime: 3
   _standingOnColour: 4
+  _baseColour: {r: 0, g: 0, b: 0, a: 0}
+  OnHide:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2031021910}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1236632993}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnShow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1236632993}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2031021910}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!65 &783120004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -683,6 +740,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 893043282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1236632993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5962597722512004057, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+  m_PrefabInstance: {fileID: 1994481915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1236632995 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5927542445306266892, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+  m_PrefabInstance: {fileID: 1994481915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &1278613691 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 464862511463011243, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
@@ -992,7 +1059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: -0.329
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1030,6 +1097,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 00ccf7a0f039af94da8d11cd99997753, type: 2}
+    - target: {fileID: -5962597722512004057, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 464862511463011243, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1125,6 +1196,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 471613693}
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!1 &2031021910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5735823790188376925, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+  m_PrefabInstance: {fileID: 1994481915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2144046041
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lvl4Palette
   m_EditorClassIdentifier: Assembly-CSharp::LevelPalette
   palette:
+    ChamRestColor: {r: 0.6101106, g: 0.7412399, b: 0.43855023, a: 0}
     Color1: {r: 1, g: 0.831254, b: 0.10849059, a: 0}
     Color2: {r: 1, g: 0.7214002, b: 0.1462264, a: 0}
     Color3: {r: 1, g: 0.46666667, b: 0.23921569, a: 0}
