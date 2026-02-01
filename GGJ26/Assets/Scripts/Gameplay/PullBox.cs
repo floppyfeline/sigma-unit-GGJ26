@@ -3,7 +3,6 @@ using UnityEngine;
 public class PullBox : MonoBehaviour, ITongueable
 {
     private Vector3 pullTo;
-
     private float pullTimer;
     private Vector3 initPos;
     private TongueData tongueData;
