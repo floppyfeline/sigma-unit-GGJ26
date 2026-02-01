@@ -104,7 +104,6 @@ public class PlayerColourManager : Colourable
     public override void OnFloorChange(TileColour floorColour)
     {
         _standingOnColour = floorColour;
-        Debug.Log($"Player stepped on color: {floorColour}");
         CheckForHidden();
     }
 }

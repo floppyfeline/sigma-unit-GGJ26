@@ -19,9 +19,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    private int money;
-    private int yarnBalls;
-
     void Start()
     {
         SceneLoader = gameObject.AddComponent<LevelLoader>();
@@ -34,7 +31,14 @@ public class GameManager : MonoBehaviour
     {
         Timers.RunTimers();
     }
-    #region Backend
+
+    public void PlayerCaught()
+    {
+        // SceneLoader.ReloadCurrentLevel();
+    }
+
+
+    #region UI
     public void ReturnToMainMenu()
     {
         SceneLoader.LoadMainMenu();
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     private class SaveGameData
     {
+        // Levels, high scores, etc.
     }
 
 #region SaveGame

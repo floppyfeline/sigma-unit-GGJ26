@@ -12975,7 +12975,7 @@ GameObject:
   - component: {fileID: 1016685547}
   - component: {fileID: 1016685549}
   - component: {fileID: 1016685548}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Raycast4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13030,6 +13030,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26436b2a79deaf4c98be7562b698bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaycastCollider
+  SeeingPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1020917899
 GameObject:
   m_ObjectHideFlags: 0
@@ -13405,7 +13408,7 @@ GameObject:
   - component: {fileID: 1050273449}
   - component: {fileID: 1050273451}
   - component: {fileID: 1050273450}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Raycast2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13460,6 +13463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26436b2a79deaf4c98be7562b698bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaycastCollider
+  SeeingPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1057816020
 GameObject:
   m_ObjectHideFlags: 0
@@ -15613,7 +15619,7 @@ GameObject:
   - component: {fileID: 1244000254}
   - component: {fileID: 1244000256}
   - component: {fileID: 1244000255}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Raycast1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15668,6 +15674,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26436b2a79deaf4c98be7562b698bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaycastCollider
+  SeeingPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1244581950
 GameObject:
   m_ObjectHideFlags: 0
@@ -16043,7 +16052,7 @@ GameObject:
   - component: {fileID: 1271702616}
   - component: {fileID: 1271702618}
   - component: {fileID: 1271702617}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Raycast3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16098,6 +16107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26436b2a79deaf4c98be7562b698bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaycastCollider
+  SeeingPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1281175688
 GameObject:
   m_ObjectHideFlags: 0
@@ -17900,6 +17912,12 @@ MonoBehaviour:
   _colourTime: 1
   _standingOnColour: 4
   _baseColour: {r: 0, g: 0, b: 0, a: 0}
+  OnColourPicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnColourReset:
+    m_PersistentCalls:
+      m_Calls: []
   OnHide:
     m_PersistentCalls:
       m_Calls: []
@@ -17962,6 +17980,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1435189786}
   wallCheck: {fileID: 1435189785}
   moveSpeed: 5
+  _hideMoveSpeed: 2
   jumpTime: 2
   _jumpHeight: 5
   gravityBuildup: 0.05

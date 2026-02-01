@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
 public class RaycastCollider : MonoBehaviour
 {
+    [HideInInspector]
+    public UnityEvent SeeingPlayer = new();
     private BoxCollider triggerCollider;
 
     void Start()
@@ -11,12 +14,11 @@ public class RaycastCollider : MonoBehaviour
         triggerCollider = GetComponent<BoxCollider>();
     }
 
-
     void Update()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Constants.LAYER_Default))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity, Constants.LAYER_Default, QueryTriggerInteraction.Ignore))
         {
-            triggerCollider.center = hit.point - new Vector3(0, triggerCollider.size.y / 2f, 0);
+            triggerCollider.center = transform.InverseTransformPoint(hit.point + triggerCollider.size.y / 2 * Vector3.up);
         }
         else
         {
@@ -24,11 +26,14 @@ public class RaycastCollider : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(Constants.TAG_Player) && other.TryGetComponent(out PlayerColourManager player))
         {
-            bool isHidden = false;
+            if(player.IsHidden)
+                return;
+
+            SeeingPlayer?.Invoke();
         }
     }
 }
