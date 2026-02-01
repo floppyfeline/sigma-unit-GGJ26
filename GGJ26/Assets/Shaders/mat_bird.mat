@@ -139,6 +139,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColour: {r: 0.093253404, g: 0.15660106, b: 0.34770882, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TileColour: {r: 0.45552552, g: 0.18110514, b: 0.18110514, a: 1}
+    - _TileColour: {r: 0.42857128, g: 0.42857128, b: 0.42857128, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

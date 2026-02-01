@@ -8,11 +8,13 @@ public class LevelLoader : MonoBehaviour
 {
 	public UnityEvent loadStarted = new();
 	private bool _isLoading = false;
-
-	int levelIndex = 1;
+	[SerializeField] private int StartingLevelIndex = 1;
+    int levelIndex = 1;
     private void Start()
     {
+		levelIndex = StartingLevelIndex;
 		LoadSceneByName("lvl" + levelIndex);
+		
     }
     public void LoadNextLevel()
 	{
