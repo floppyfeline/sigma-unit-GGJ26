@@ -234,9 +234,17 @@ MonoBehaviour:
     m_Id: 9081871f-139a-4bf5-b912-2f0af25f01db
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 97d29993-f5d8-40b7-8157-6e78e6775ed4
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screenshot Input
+      m_Flags: 0
     m_Flags: 0
-  scaleValue: 1
+  scaleValue: 2
 --- !u!4 &1670473380
 Transform:
   m_ObjectHideFlags: 0
@@ -256,5 +264,5 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1670473380}
   - {fileID: 623850599}
+  - {fileID: 1670473380}

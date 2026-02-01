@@ -28,7 +28,7 @@ public class Collectible : MonoBehaviour, ITongueable
             decals[i].enabled = false;
         }
 
-        PaletteManager.Instance.SetRandomPalette();
+        PaletteManager.Instance.RandomizePalette();
         GameManager.Instance.OnCollectiblePickedUp();
         Timers.After(_disappearDelay, () => {
             Timers.UntilThen(_disappearDuration, () =>

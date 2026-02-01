@@ -22,11 +22,13 @@ public class PaletteManager : InspectorAttributes
     private void Start()
     {
     }
-    public void SetRandomPalette()
+    public void RandomizePalette()
     {
         _currentLevelPalette.palette = _currentLevelPalette.GetSwappedPalette();
         OnPaletteChanged?.Invoke(_currentLevelPalette.palette);
-        return;
+    }
+    public void SetRandomPalette()
+    {
         if (_allPalettes.Count == 0)
             return;
         int randomIndex = UnityEngine.Random.Range(0, _allPalettes.Count);
