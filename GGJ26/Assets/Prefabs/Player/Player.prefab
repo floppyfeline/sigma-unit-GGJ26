@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8386804235112428773}
   - component: {fileID: 3778206988425355854}
   - component: {fileID: 1379513944501068546}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TongueLong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6923659704283430631}
   - component: {fileID: 3888445332317697351}
   - component: {fileID: 5131571345618064948}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
   playerSpace: {fileID: 0}
   groundCheck: {fileID: 7672353310172532294}
   wallCheck: {fileID: 5098351792308592058}
-  moveSpeed: 5
+  moveSpeed: 3
   _hideMoveSpeed: 2
   jumpTime: 0.42
   _jumpHeight: 2.82
@@ -235,7 +235,7 @@ MonoBehaviour:
   - {fileID: 3962052557864405346}
   - {fileID: 6868276596559725270}
   - {fileID: 5646833374372718498}
-  _colourTime: 0.34
+  _colourTime: 0.3
   _standingOnColour: 4
   _baseColour: {r: 0, g: 0, b: 0, a: 0}
   OnColourPicked:
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 4564747635510062101}
   - component: {fileID: 7672353310172532294}
   - component: {fileID: 8818476215833333560}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundedCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7290041493268567602}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TongueOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 2450000602942187213}
   - component: {fileID: 4149422478890817524}
   - component: {fileID: 3375830974326865338}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TongueTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3778488352179010534}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TongueExtent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 3695215245908803934}
   - component: {fileID: 2158416877895064946}
   - component: {fileID: 3316394684898301246}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Drop Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ Transform:
   m_GameObject: {fileID: 3504114684764783473}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1, z: -0}
+  m_LocalPosition: {x: 0, y: -0.31, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -589,9 +589,9 @@ MonoBehaviour:
     serializedVersion: 0
     m_Bits: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 2.5}
-  m_Size: {x: 1, y: 1, z: 5}
-  m_FadeFactor: 0.709
+  m_Offset: {x: 0, y: 0, z: 0.42}
+  m_Size: {x: 1, y: 1, z: 0.84}
+  m_FadeFactor: 0.5
   version: 1
   m_DecalLayerMask: 1
 --- !u!114 &3316394684898301246
@@ -601,14 +601,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3504114684764783473}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc2ecd6e0dbedb8469dd3fe319a0929f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointDropShadowDown
-  _maxDistance: 2
+  _maxDistance: 7
   _targetRigidbody: {fileID: 6923659704283430631}
-  _projectionDepthBuffer: 0.2
+  _projectionDepthBuffer: -0.02
   _detectedGroundLayers:
     serializedVersion: 2
     m_Bits: 65
@@ -623,7 +623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7778333796709618378}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TongueVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 4548936301672548964}
   - component: {fileID: 5098351792308592058}
   - component: {fileID: 6312518855873176457}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WalledCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4555979126496392645}
   - component: {fileID: 2079056802182727589}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TongueControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5753842653891873954}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TongueEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -887,13 +887,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8379598381370826250, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8128750775105232895, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -7530276033720076577, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 00ccf7a0f039af94da8d11cd99997753, type: 2}
+    - target: {fileID: -7322790596864205083, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6968249506760065476, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5962597722512004057, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -5962597722512004057, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5735823790188376925, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4702066943846958126, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4514648918872340999, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2966942948322771325, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2841675403333329656, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1414983586473734956, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -497948713145760824, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 82903103990809504, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 464862511463011243, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -907,6 +959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chameleon
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1096383869390693335, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -915,6 +971,34 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 00ccf7a0f039af94da8d11cd99997753, type: 2}
+    - target: {fileID: 2028332608482045100, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214467709319894765, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3441875270052967282, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481943637151593030, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721527719993781717, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786833337411648727, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5049183455667285294, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5252548790448437872, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -927,6 +1011,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f2d62bcae1492544a9cb376c8acf99d0, type: 2}
+    - target: {fileID: 6442154095538292063, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7267635976155841759, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -935,6 +1023,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 00ccf7a0f039af94da8d11cd99997753, type: 2}
+    - target: {fileID: 7959572076963804302, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027524514122731897, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8061031145935722527, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -943,6 +1039,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 00ccf7a0f039af94da8d11cd99997753, type: 2}
+    - target: {fileID: 8451665221246492439, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9089820643513216318, guid: 458ee58275e61134da2b3ce92f642590, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

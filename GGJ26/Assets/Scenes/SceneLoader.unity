@@ -151,6 +151,7 @@ MonoBehaviour:
   loadStarted:
     m_PersistentCalls:
       m_Calls: []
+  StartingLevelIndex: 1
 --- !u!4 &623850599
 Transform:
   m_ObjectHideFlags: 0

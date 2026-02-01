@@ -10,6 +10,7 @@ public class LevelLoader : MonoBehaviour
 	private bool _isLoading = false;
 	[SerializeField] private int StartingLevelIndex = 1;
     int levelIndex = 1;
+	int maxLevel = 7;
     private void Start()
     {
 		levelIndex = StartingLevelIndex;
@@ -20,15 +21,18 @@ public class LevelLoader : MonoBehaviour
 	{
 		if (_isLoading) return;
 		loadStarted.Invoke();
-		levelIndex++;
+		if (levelIndex == maxLevel)
+		{
+			levelIndex = 1;
+		}
+		else levelIndex++;
         LoadSceneByName("lvl" + levelIndex);
 	}
 	public void ReloadCurrentScenes()
 	{
 		if (_isLoading) return;
-		Debug.Log("Reloading current scene: " + SceneManager.GetActiveScene().name);
-		StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
-	}
+        LoadSceneByName("lvl" + levelIndex);
+    }
 	public void LoadSceneByName(string name)
 	{
 		if (_isLoading) return;

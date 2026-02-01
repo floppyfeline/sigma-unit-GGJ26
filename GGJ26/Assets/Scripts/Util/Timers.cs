@@ -91,6 +91,11 @@ public static class Timers
         timer.Delete();
         _timers.Remove(timer);
     }
+    public static void Add(Timer timer)
+    {
+        if (timer == null) return;
+        _timers.Add(timer);
+    }
 }
 
 public class Timer

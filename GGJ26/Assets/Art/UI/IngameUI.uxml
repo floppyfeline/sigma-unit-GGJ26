@@ -3,8 +3,8 @@
     <ui:VisualElement name="root" style="flex-grow: 1;">
         <ui:VisualElement name="columns" class="rows" style="flex-grow: 1; padding-top: 33px; padding-right: 33px; padding-bottom: 33px; padding-left: 33px;">
             <ui:VisualElement name="column-timer" class="rows" style="align-items: center;">
-                <ui:VisualElement name="timer-window" class="window" style="width: 20%;">
-                    <ui:Label text="START" name="timer-label" focusable="true" class="text" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Robot_Font.otf?fileID=12800000&amp;guid=f07e925b11339b940846d88e58ec7bc1&amp;type=3#Robot_Font&quot;); font-size: 80%;"/>
+                <ui:VisualElement name="timer-window" class="window" style="min-width: 19%;">
+                    <ui:Label text="START" name="timer-label" focusable="true" enable-rich-text="true" class="text" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Robot_Font.otf?fileID=12800000&amp;guid=f07e925b11339b940846d88e58ec7bc1&amp;type=3#Robot_Font&quot;); font-size: 80%;"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="spacer" style="flex-grow: 1;"/>
             </ui:VisualElement>
