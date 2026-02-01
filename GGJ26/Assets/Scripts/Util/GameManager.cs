@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private LevelLoader SceneLoader;
 
+    private bool gameActive;
+    private PlayerController player;
+
     protected virtual void Awake()
     {
         if (Instance != null && Instance != this)
@@ -22,6 +25,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneLoader = gameObject.AddComponent<LevelLoader>();
+
+        player = FindAnyObjectByType<PlayerController>();
     }
     private void OnDestroy()
     {
@@ -34,14 +39,37 @@ public class GameManager : MonoBehaviour
 
     public void PlayerCaught()
     {
-        // SceneLoader.ReloadCurrentLevel();
+        Timers.After(3f, () => 
+            {
+                player.GetCaught(); 
+                Timers.After(5f, () => ReloadCurrentLevel());
+            }
+        );
     }
 
+    private void PauseGameActivity()
+    {
+        gameActive = false;
+    }
+    private void ResumeGameActivity()
+    {
+        gameActive = false;
+    }
+    public bool GetGameActive()
+    {
+        return gameActive;
+    }
 
     #region UI
     public void ReturnToMainMenu()
     {
         SceneLoader.LoadMainMenu();
+    }
+
+    public void ReloadCurrentLevel()
+    {
+        Debug.Log("Ya lost");
+        SceneLoader.ReloadCurrentScene();
     }
     #endregion
     [System.Serializable]

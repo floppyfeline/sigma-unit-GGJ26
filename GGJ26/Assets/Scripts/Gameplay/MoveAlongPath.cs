@@ -38,6 +38,8 @@ public class MoveAlongPath : InspectorAttributes
     private bool waiting;
     private float waitTimer;
 
+    private bool movementPaused;
+
     // Used only for PingPong
     private int direction = 1;
 
@@ -61,6 +63,15 @@ public class MoveAlongPath : InspectorAttributes
             movePoints.Add(pointObject.GetChild(i).position);
     }
 
+    public void PauseMovement()
+    {
+        movementPaused = true;
+    }
+    public void ResumeMovement()
+    {
+        movementPaused = false;
+    }
+
     private void Start()
     {
         if (movePoints.Count < 2)
@@ -79,6 +90,8 @@ public class MoveAlongPath : InspectorAttributes
 
     private void Update()
     {
+        if(movementPaused || !GameManager.Instance.GetGameActive()) return;
+
         if (waiting)
         {
             waitTimer -= Time.deltaTime;

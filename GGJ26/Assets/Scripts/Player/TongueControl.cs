@@ -58,7 +58,7 @@ public class TongueControl : MonoBehaviour
 
     public void LaunchTongue()
     {
-        if (tongueOnCooldown) return;
+        if (tongueOnCooldown || !GameManager.Instance.GetGameActive()) return;
 
         tongueOnCooldown = true;
         Timers.After(tongueCooldown, () => { tongueOnCooldown = false; });
