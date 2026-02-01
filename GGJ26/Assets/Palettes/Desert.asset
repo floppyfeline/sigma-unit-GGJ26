@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelPalette
   palette:
     ChamRestColor: {r: 1, g: 0, b: 0, a: 0}
-    Color1: {r: 1, g: 1, b: 0.50261784, a: 0}
-    Color2: {r: 0.5863876, g: 0.50261784, b: 1, a: 0}
-    Color3: {r: 0.5, g: 1, b: 0.75, a: 0}
+    Color1: {r: 0.5, g: 1, b: 0.75, a: 0}
+    Color2: {r: 1, g: 1, b: 0.50261784, a: 0}
+    Color3: {r: 0.5863876, g: 0.50261784, b: 1, a: 0}
     Color4: {r: 1, g: 0.5, b: 1, a: 0}
     None: {r: 1, g: 1, b: 1, a: 0}
-    ShadowColor: {r: 0, g: 0, b: 0, a: 0}
-    Special: {r: 0.815876, g: 0, b: 1, a: 0}
+    ShadowColor: {r: 0.20954591, g: 0, b: 0.46091634, a: 0}
+    Special: {r: 0.41675544, g: 1, b: 0, a: 0}

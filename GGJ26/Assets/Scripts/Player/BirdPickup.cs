@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class BirdPickup : MonoBehaviour
@@ -29,6 +30,12 @@ public class BirdPickup : MonoBehaviour
         playerCarry = false;
 
         timer = catchTime;
+
+        Collider[] playerColliders = player.GetComponents<Collider>();
+        for(int i = 0; i < playerColliders.Length; i ++)
+        {
+            playerColliders[i].enabled = false;
+        }
     }
 
     private void Update()
@@ -56,6 +63,12 @@ public class BirdPickup : MonoBehaviour
         if (playerCarry && !playerApproach)
         {
             transform.position = Vector3.Lerp(stashedPlayerPos + pickUpOffset, stashedPlayerPos + carryToOffset, 1 - (timer / catchTime));
+
+        Collider[] playerColliders = player.GetComponents<Collider>();
+        for(int i = 0; i < playerColliders.Length; i ++)
+        {
+            playerColliders[i].enabled = true;
+        }
         }
     }
 
