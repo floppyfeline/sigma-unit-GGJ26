@@ -6,6 +6,6 @@ public class DebugRandomPalette : MonoBehaviour
     public void Start()
     {
         _swapPalette.Enable();
-        _swapPalette.performed += ctx => PaletteManager.Instance.RandomizePalette();
+        _swapPalette.performed += ctx => PaletteManager.Instance.SetRandomPalette();
     }
 }
