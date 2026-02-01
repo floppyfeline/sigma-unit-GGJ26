@@ -1,0 +1,86 @@
+:root {
+}
+
+.columns {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.rows {
+}
+
+.window {
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgba(0, 0, 0, 0.5);
+    border-right-color: rgba(0, 0, 0, 0.3);
+    border-top-color: rgba(0, 0, 0, 0.11);
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+    background-image: none;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.text {
+    color: rgb(0, 0, 0);
+    -unity-font-definition: url("project://database/Assets/Art/UI/Fonts/Top%20Show.otf?fileID=12800000&guid=c01f086c0a0a2dd42a5ed41088248c34&type=3#Top Show");
+    font-size: 125px;
+    margin-bottom: -15px;
+}
+
+.colour1 {
+    background-color: rgb(255, 190, 0);
+}
+
+.colour2 {
+    background-color: rgb(26, 0, 255);
+}
+
+.colour3 {
+    background-color: rgb(16, 255, 0);
+}
+
+.colour4 {
+    background-color: rgb(255, 0, 0);
+}
+
+.unity-disabled {
+    opacity: 1;
+}
+
+.collectible {
+    background-image: url("project://database/Assets/Art/UI/Fly_collectible.png?fileID=2800000&guid=93a3daa5989e7cf4e8f59fd4b3297d3c&type=3#Fly_collectible");
+    flex-grow: 0;
+    aspect-ratio: 1;
+    opacity: 1;
+}
+
+.collectible:disabled {
+    -unity-background-image-tint-color: rgba(0, 0, 0, 0.28);
+    opacity: 0.4;
+}
+
+.colour-window {
+    aspect-ratio: 1;
+    width: 59px;
+}
+
+.justify-center {
+    justify-content: space-between;
+    align-self: center;
+}
+
+.collectible-eyes {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    opacity: 1;
+    aspect-ratio: 1;
+}

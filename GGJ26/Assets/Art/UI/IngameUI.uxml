@@ -1,9 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ui:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ui="UnityEngine.UIElements"
-    xmlns:uie="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
->
-    
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Art/UI/switchswatch.uss?fileID=7433441132597879392&amp;guid=6f0c7a563e4fe6a4a849f6fcaaebd0d5&amp;type=3#switchswatch"/>
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:VisualElement name="columns" class="columns" style="flex-grow: 1; padding-top: 33px; padding-right: 33px; padding-bottom: 33px; padding-left: 33px;">
+            <ui:VisualElement name="column-timer" class="rows" style="flex-grow: 1;">
+                <ui:VisualElement name="timer-window" class="window" style="flex-grow: 0; max-height: 16%; max-width: 32%;">
+                    <ui:Label text="12.2s " name="time-label" class="text" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Robot_Font.otf?fileID=12800000&amp;guid=f07e925b11339b940846d88e58ec7bc1&amp;type=3#Robot_Font&quot;); font-size: 80%;"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="spacer" style="flex-grow: 1;"/>
+                <ui:VisualElement name="colours-window" style="flex-grow: 0; align-self: flex-start;">
+                    <ui:VisualElement name="top-colour-row" class="justify-center" style="flex-grow: 1;">
+                        <ui:VisualElement enabled="true" name="colour-top" class="window colour-window colour1" style="flex-grow: 1; border-bottom-right-radius: 0; border-bottom-left-radius: 0;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="middle-colour-row" class="justify-center" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement enabled="true" name="colour-right" class="window colour-window colour3" style="flex-grow: 1; border-bottom-right-radius: 0; border-top-right-radius: 0;"/>
+                        <ui:VisualElement enabled="true" class="colour-window" style="flex-grow: 1; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;"/>
+                        <ui:VisualElement enabled="true" name="colour-left" class="window colour-window colour2" style="flex-grow: 1; border-top-left-radius: 0; border-bottom-left-radius: 0;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="bottom-colour-row" class="justify-center" style="flex-grow: 1;">
+                        <ui:VisualElement enabled="true" name="colour-bottom" class="window colour-window colour4" style="flex-grow: 1; border-top-right-radius: 0; border-top-left-radius: 0;"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="column-collectible" class="rows" style="flex-grow: 1; align-items: flex-end;">
+                <ui:VisualElement name="bug-window" class="window columns" style="flex-grow: 0; width: 60%; height: 13%; justify-content: space-around; aspect-ratio: 1.777778;">
+                    <ui:VisualElement name="bug-1" enabled="false" class="collectible" style="flex-grow: 1;">
+                        <ui:VisualElement name="bug-1-eyes" enabled="false" class="collectible-eyes" style="background-image: url(&quot;project://database/Assets/Art/UI/Fly_collectible_eyes.png?fileID=2800000&amp;guid=b99e529c26d9c68468858a125d5fdb27&amp;type=3#Fly_collectible_eyes&quot;); -unity-background-image-tint-color: rgb(255, 255, 255);"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="bug-2" enabled="false" class="collectible" style="flex-grow: 1;">
+                        <ui:VisualElement name="bug-2-eyes" enabled="false" class="collectible-eyes" style="background-image: url(&quot;project://database/Assets/Art/UI/Fly_collectible_eyes.png?fileID=2800000&amp;guid=b99e529c26d9c68468858a125d5fdb27&amp;type=3#Fly_collectible_eyes&quot;); -unity-background-image-tint-color: rgb(255, 255, 255);"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="bug-3" enabled="false" class="collectible" style="flex-grow: 1;">
+                        <ui:VisualElement name="bug-3-eyes" enabled="false" class="collectible-eyes" style="background-image: url(&quot;project://database/Assets/Art/UI/Fly_collectible_eyes.png?fileID=2800000&amp;guid=b99e529c26d9c68468858a125d5fdb27&amp;type=3#Fly_collectible_eyes&quot;); -unity-background-image-tint-color: rgb(255, 255, 255);"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="spacer" style="flex-grow: 1.777778;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
