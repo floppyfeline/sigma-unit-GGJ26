@@ -154,6 +154,6 @@ public class PlayerController : MonoBehaviour
 
     public void GetCaught()
     {
-        bird.CatchPlayer();
+        bird.CatchPlayer(transform);
     }
 }
