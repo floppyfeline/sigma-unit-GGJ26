@@ -15,10 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpTime = 2f;
     [SerializeField] private float _jumpHeight = 5f;
     [SerializeField] private float gravityBuildup = 0.05f;
-
     private PlayerInputs moveInput;
     private Rigidbody rb;
     private bool movementEnabled = true;
+
+    [SerializeField] private BirdPickup bird;
 
     [SerializeField] private Transform visualTransform;
     Timer _jumpTimer;
@@ -153,6 +154,6 @@ public class PlayerController : MonoBehaviour
 
     public void GetCaught()
     {
-        
+        bird.CatchPlayer();
     }
 }

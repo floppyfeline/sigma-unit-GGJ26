@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private LevelLoader SceneLoader;
 
-    private bool gameActive;
+    private bool gameActive = true;
     private PlayerController player;
 
     protected virtual void Awake()
