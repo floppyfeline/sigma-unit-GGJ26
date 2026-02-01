@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,14 +9,15 @@ public class TongueData
     public Transform TongueExtent;
     // Seperate object, so needs to be turned off indepentently
     public Transform TongueTip;
-
+    public Action OnReset;
+  
     public void ResetTongue()
     {
         TongueExtent.localScale = new Vector3(Constants.TONGUE_Thickness, Constants.TONGUE_Thickness, Constants.TONGUE_Thickness);
         TongueExtent.rotation = Quaternion.identity;
-
         TongueExtent.gameObject.SetActive(false);
         TongueTip.gameObject.SetActive(false);
+        OnReset?.Invoke();  
     }
     public void StayAttached(Vector3 target)
     {
@@ -42,6 +44,13 @@ public class TongueControl : MonoBehaviour
 
     public UnityEvent OnTongueLaunched;
     public UnityEvent OnTongueRetracted;
+    private void Start()
+    {
+        tongueData.OnReset += () =>
+        {
+           OnTongueRetracted?.Invoke();
+        };
+    }
     void OnEnable()
     {
         tongueData.ResetTongue();
@@ -58,7 +67,7 @@ public class TongueControl : MonoBehaviour
 
         tongueData.TongueExtent.gameObject.SetActive(true);
         tongueData.TongueTip.gameObject.SetActive(true);
-
+        
         if (Physics.SphereCast(transform.position, 0.25f, transform.forward, out RaycastHit hit, tongueRange, Constants.LAYER_Tongueable))
         {
             if (hit.transform.TryGetComponent(out ITongueable tongueable))
