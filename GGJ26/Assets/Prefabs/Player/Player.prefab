@@ -147,9 +147,11 @@ MonoBehaviour:
   groundCheck: {fileID: 7672353310172532294}
   wallCheck: {fileID: 5098351792308592058}
   moveSpeed: 5
+  _hideMoveSpeed: 2
   jumpTime: 0.42
   _jumpHeight: 2.82
   gravityBuildup: 0.17
+  bird: {fileID: 0}
   visualTransform: {fileID: 4337542781569176131}
 --- !u!114 &6877319612649130983
 MonoBehaviour:
@@ -236,6 +238,12 @@ MonoBehaviour:
   _colourTime: 0.34
   _standingOnColour: 4
   _baseColour: {r: 0, g: 0, b: 0, a: 0}
+  OnColourPicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnColourReset:
+    m_PersistentCalls:
+      m_Calls: []
   OnHide:
     m_PersistentCalls:
       m_Calls:
@@ -552,7 +560,7 @@ Transform:
   m_GameObject: {fileID: 3504114684764783473}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.31700003, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -581,8 +589,8 @@ MonoBehaviour:
     serializedVersion: 0
     m_Bits: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 4}
-  m_Size: {x: 1, y: 1, z: 8}
+  m_Offset: {x: 0, y: 0, z: 2.5}
+  m_Size: {x: 1, y: 1, z: 5}
   m_FadeFactor: 0.709
   version: 1
   m_DecalLayerMask: 1
@@ -600,7 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PointDropShadowDown
   _maxDistance: 2
   _targetRigidbody: {fileID: 6923659704283430631}
-  _projectionDepthBuffer: 0.01
+  _projectionDepthBuffer: 0.2
   _detectedGroundLayers:
     serializedVersion: 2
     m_Bits: 65

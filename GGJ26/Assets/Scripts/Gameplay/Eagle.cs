@@ -68,7 +68,7 @@ public class Eagle : MonoBehaviour
 
         for (int i = 0; i < raycastSocketOffsets.Count; i++)
         {
-            if (Physics.Raycast(raycastSocketOffsets[i].position, Vector3.down, out var hit, 10f))
+            if (Physics.SphereCast(raycastSocketOffsets[i].position, 0.33f, Vector3.down, out var hit, 15f))
             {
                 highestRayHitDistance = Mathf.Max(highestRayHitDistance, hit.distance);
             }

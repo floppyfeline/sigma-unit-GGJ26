@@ -40,10 +40,10 @@ public class GameManager : MonoBehaviour
     public void PlayerCaught()
     {
         PauseGameActivity();
-        Timers.After(3f, () => 
+        Timers.After(2f, () => 
             {
                 player.GetCaught(); 
-                Timers.After(5f, () => {ReloadCurrentLevel(); ResumeGameActivity(); });
+                Timers.After(3.5f, () => {ReloadCurrentLevel(); ResumeGameActivity(); });
             }
         );
     }

@@ -202,11 +202,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4337542781569176131, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
   m_PrefabInstance: {fileID: 1254057318}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &689762659 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 6923659704283430631, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
-  m_PrefabInstance: {fileID: 1254057318}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &865608995
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,10 +301,6 @@ PrefabInstance:
     - target: {fileID: 3316394684898301246, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3316394684898301246, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
-      propertyPath: _projectionDepthBuffer
-      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 3390189482238453667, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
       propertyPath: m_Layer
@@ -462,10 +453,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3504114684764783473, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1797917045}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
 --- !u!1 &1624742539
 GameObject:
@@ -499,31 +487,6 @@ Transform:
   - {fileID: 456345973}
   m_Father: {fileID: 2029137582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1797917042 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3504114684764783473, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
-  m_PrefabInstance: {fileID: 1254057318}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1797917045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797917042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2ecd6e0dbedb8469dd3fe319a0929f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PointDropShadowDown
-  _maxDistance: 2
-  _targetRigidbody: {fileID: 689762659}
-  _projectionDepthBuffer: -0.15
-  _detectedGroundLayers:
-    serializedVersion: 2
-    m_Bits: 65
-  _useManualOffset: 0
-  _manualOffset: {fileID: 0}
 --- !u!1 &2029137581
 GameObject:
   m_ObjectHideFlags: 0
