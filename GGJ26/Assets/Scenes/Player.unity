@@ -451,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230176304060042488, guid: ced98fd1c7d507f49944e29f58b6b73a, type: 3}
       propertyPath: gravityBuildup
-      value: 25
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
