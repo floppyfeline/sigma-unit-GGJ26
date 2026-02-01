@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class RaycastCollider : MonoBehaviour
 {
     [HideInInspector]
-    public UnityEvent SeeingPlayer = new();
+    public UnityEvent<int> SeeingPlayer = new();
+    private bool isSeen;
     private BoxCollider triggerCollider;
 
     void Start()
@@ -25,15 +26,40 @@ public class RaycastCollider : MonoBehaviour
             triggerCollider.center = Vector3.zero;
         }
     }
-
-    void OnTriggerStay(Collider other)
+    private void SeePlayer()
+    {
+        if(isSeen) return;
+        
+        SeeingPlayer?.Invoke(1);
+        isSeen = true;
+    }
+    private void LosePlayer()
+    {
+        if(!isSeen) return;
+        SeeingPlayer?.Invoke(-1);
+        isSeen = false;
+    }
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Constants.TAG_Player) && other.TryGetComponent(out PlayerColourManager player))
         {
-            if(player.IsHidden)
-                return;
+            player.OnHide.AddListener(LosePlayer);
+            player.OnShow.AddListener(SeePlayer); 
 
-            SeeingPlayer?.Invoke();
+
+
+            if(!player.IsHidden) SeePlayer();
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(Constants.TAG_Player) && other.TryGetComponent(out PlayerColourManager player))
+        {
+            player.OnHide.RemoveListener(LosePlayer);
+            player.OnShow.RemoveListener(SeePlayer); 
+
+
+            LosePlayer();
         }
     }
 }

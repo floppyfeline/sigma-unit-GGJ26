@@ -9,16 +9,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private WallCheck wallCheck;
     
     [Header("Movement Parameters")]
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float _hideMoveSpeed = 2f;
     private float _activeMoveSpeed;
     [SerializeField] private float jumpTime = 2f;
     [SerializeField] private float _jumpHeight = 5f;
     [SerializeField] private float gravityBuildup = 0.05f;
-
     private PlayerInputs moveInput;
     private Rigidbody rb;
     private bool movementEnabled = true;
+
+    [SerializeField] private BirdPickup bird;
 
     [SerializeField] private Transform visualTransform;
     Timer _jumpTimer;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(!GameManager.Instance.GetGameActive()) return;
+
         if(movementEnabled) HandleMovement();
         else OnMove?.Invoke(false);
 
@@ -147,5 +150,10 @@ public class PlayerController : MonoBehaviour
     {
         movementEnabled = toggle;
         rb.linearVelocity = Vector3.zero;
+    }
+
+    public void GetCaught()
+    {
+        bird.CatchPlayer();
     }
 }

@@ -8,11 +8,13 @@ public class Eagle : MonoBehaviour
     [SerializeField] private DecalProjector decalProjector;
 
     // ===== Detection =====
-    private float lastSeenTime = -999f;
-    private float detectionTimer = 0f;
+    private float detectionTimer = 10f;
+    private int collidersSeeingPlayer = 0;
 
     void Start()
     {
+        detectionTimer = Constants.EAGLE_DetectionTime;
+
         for (int i = 0; i < raycastSocketOffsets.Count; i++)
         {
             raycastSocketOffsets[i]
@@ -28,41 +30,39 @@ public class Eagle : MonoBehaviour
         ResizeDecal();
     }
 
-    // =========================================================
-    // Detection Logic (time-based, physics safe)
-    // =========================================================
+    // Detection Logic
     private void HandleDetection()
     {
-        // Seen within last frame's worth of time?
-        bool seenRecently = Time.time - lastSeenTime <= Time.deltaTime;
+        if(!GameManager.Instance.GetGameActive()) return;
 
-        if (seenRecently)
+        if(collidersSeeingPlayer <= 0)
+            detectionTimer = Constants.EAGLE_DetectionTime;
+
+        Debug.Log(detectionTimer + " Seconds left");
+        detectionTimer -= Time.deltaTime;
+
+        if(detectionTimer <= 0) 
         {
-            detectionTimer += Time.deltaTime;
-
-            float caughtProgress = detectionTimer / Constants.EAGLE_DetectionTime;
-            Debug.Log($"Eagle caught progress: {caughtProgress:P0}");
-
-            if (detectionTimer >= Constants.EAGLE_DetectionTime)
-            {
-                GameManager.Instance.PlayerCaught();
-            }
-        }
-        else
-        {
-            detectionTimer = 0f;
+            GameManager.Instance.PlayerCaught();
+            return;
         }
     }
 
     // Called by ANY trigger that sees the player
-    private void SeeingPlayer()
+    private void SeeingPlayer(int i)
     {
-        lastSeenTime = Time.time;
+        collidersSeeingPlayer += i;
+
+        if(collidersSeeingPlayer <= 0) 
+        {
+            collidersSeeingPlayer = 0;
+            return;
+        }
+        
     }
 
-    // =========================================================
     // Decal Projector Resize
-    // =========================================================
+
     private void ResizeDecal()
     {
         float highestRayHitDistance = 0f;

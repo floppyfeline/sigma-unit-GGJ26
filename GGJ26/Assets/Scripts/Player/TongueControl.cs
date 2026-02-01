@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -58,7 +59,7 @@ public class TongueControl : MonoBehaviour
 
     public void LaunchTongue()
     {
-        if (tongueOnCooldown) return;
+        if (tongueOnCooldown || !GameManager.Instance.GetGameActive()) return;
 
         tongueOnCooldown = true;
         Timers.After(tongueCooldown, () => { tongueOnCooldown = false; });
@@ -72,13 +73,35 @@ public class TongueControl : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out ITongueable tongueable))
             {
+                // If wall is in between me and the tonguable
+                if(Physics.Raycast(
+                    transform.position, 
+                    transform.forward, 
+                    out RaycastHit defaultHit, 
+                    Vector3.Distance(transform.position, hit.point), 
+                    ~Constants.LAYER_Player, 
+                    QueryTriggerInteraction.Ignore))
+                {
+                    currentTarget = null;
+                    hitPoint = defaultHit.point;
+                    tongueLaunched = true;
+
+                    tongueTimer = Constants.TONGUE_Speed / 2;
+
+                    return;
+                }
+                
+                // Shoot tongue at tonguable
                 currentTarget = tongueable;
                 tongueLaunched = true;
                 tongueTimer = Constants.TONGUE_Speed / 2;
 
                 hitPoint = hit.point;
+                return;
+                
             }
         }
+        // Hit air - absolutely nothing
         else
         {
             currentTarget = null;

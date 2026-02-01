@@ -8,8 +8,8 @@ public class Gate : InspectorAttributes
     [SerializeField] private float interpolationIntensity = 1f;
     [SerializeField] private Transform pointObject;
 
-    [SerializeField] private bool looping = false; // 🔥 NEW
-
+    [SerializeField] private bool looping = false;
+    [SerializeField] private bool moveInitially = false;
     public List<Vector3> movePoints = new();
 
     private int currentPointIndex;
@@ -52,9 +52,9 @@ public class Gate : InspectorAttributes
         currentPointIndex = 0;
         transform.position = movePoints[0];
         isOpen = false;
-    }
 
-    // 🔥 Event entry point
+        if (moveInitially) isMoving = true;
+    }
     public void TriggerMove()
     {
         if (isMoving) return;
@@ -78,7 +78,7 @@ public class Gate : InspectorAttributes
 
     private void Update()
     {
-        if (!isMoving) return;
+        if (!isMoving || !GameManager.Instance.GetGameActive()) return;
 
         segmentProgress += moveSpeed / segmentLength * Time.deltaTime;
 
