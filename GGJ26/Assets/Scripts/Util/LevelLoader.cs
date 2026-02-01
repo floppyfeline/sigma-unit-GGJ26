@@ -10,6 +10,7 @@ public class LevelLoader : MonoBehaviour
 	private bool _isLoading = false;
 	[SerializeField] private int StartingLevelIndex = 1;
     int levelIndex = 1;
+	int maxLevel = 7;
     private void Start()
     {
 		levelIndex = StartingLevelIndex;
@@ -20,11 +21,11 @@ public class LevelLoader : MonoBehaviour
 	{
 		if (_isLoading) return;
 		loadStarted.Invoke();
-		if(SceneManager.GetSceneByName("lvl" + (levelIndex + 1)).IsValid())
+		if (levelIndex == maxLevel)
 		{
-			levelIndex++;
+			levelIndex = 1;
 		}
-		else levelIndex--;
+		else levelIndex++;
         LoadSceneByName("lvl" + levelIndex);
 	}
 	public void ReloadCurrentScenes()
