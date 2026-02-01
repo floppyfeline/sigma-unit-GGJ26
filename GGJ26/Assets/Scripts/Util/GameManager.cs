@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public void OnCollectiblePickedUp()
     {
         _collectiblesPickedUp++;
+        OnPickup?.Invoke();
         if (_collectiblesPickedUp >= 3)
         {
             Debug.Log("All collectibles picked up! You win!");
