@@ -13,6 +13,7 @@ public class Collectible : MonoBehaviour, ITongueable
         if (IsCollected) return;
         IsCollected = true;
         PaletteManager.Instance.SetRandomPalette();
+        GameManager.Instance.OnCollectiblePickedUp();
         Timers.After(_disappearDelay, () => {
             Timers.UntilThen(_disappearDuration, () =>
             {

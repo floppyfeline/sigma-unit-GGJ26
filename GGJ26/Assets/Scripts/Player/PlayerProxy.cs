@@ -23,7 +23,6 @@ public class PlayerProxy : MonoBehaviour
     void Update()
     {
         if(!GameManager.Instance.GetGameActive()) return;
-
         // Interpolate toward the player's position
         transform.position = Vector3.Lerp(transform.position, new Vector3(playerTransform.position.x - verticalOffset, 0, playerTransform.position.z - verticalOffset), Time.deltaTime * interpolationSpeed);
 

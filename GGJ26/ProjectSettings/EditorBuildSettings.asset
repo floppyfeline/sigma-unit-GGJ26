@@ -5,9 +5,36 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/SceneLoader.unity
+    guid: 85237bf78bacdb345910c42437f43e8d
+  - enabled: 1
+    path: Assets/Scenes/Player.unity
+    guid: 7d501eedd0cb30949a11fc20e6364ba0
+  - enabled: 1
+    path: Assets/Scenes/GameManager.unity
+    guid: cfcd157a61e58e240aa628781b111435
+  - enabled: 1
+    path: Assets/Scenes/GameplayUI.unity
+    guid: 819e10ec6368a6a45825c008f4bb982c
+  - enabled: 1
+    path: Assets/Scenes/Levels/lvl1.unity
+    guid: 38697539ec23d8d4397d8f2a57807f8e
+  - enabled: 1
+    path: Assets/Scenes/Levels/lvl2.unity
+    guid: 6b53eede79d3bce4a9f091b66cc1fce2
+  - enabled: 1
+    path: Assets/Scenes/Levels/lvl3.unity
+    guid: 2f1b61ea2adf54a46b6918ecfe345eae
+  - enabled: 1
+    path: Assets/Scenes/Levels/lvl4.unity
+    guid: d0a1351072876ca44bd3b68cca84def8
+  - enabled: 1
+    path: Assets/Scenes/Levels/lvl5.unity
+    guid: 810fbae6a2132d946af3bebe58078e53
+  - enabled: 1
+    path: Assets/Scenes/Levels/lvl6.unity
+    guid: 11face68be263514eae318ec48b3bf35
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1d722963f3d8e1a4fb2b5448d4c675b3, type: 3}
   m_UseUCBPForAssetBundles: 0
