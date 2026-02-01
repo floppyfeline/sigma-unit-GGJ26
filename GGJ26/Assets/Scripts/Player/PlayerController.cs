@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -37,6 +38,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (transform.position.y < -10f)
+        {
+            transform.position = new Vector3(0, 1f, 0);
+            rb.linearVelocity = Vector3.zero;
+        } 
+
         if(!GameManager.Instance.GetGameActive()) 
         {
             rb.linearVelocity = Vector3.zero;
