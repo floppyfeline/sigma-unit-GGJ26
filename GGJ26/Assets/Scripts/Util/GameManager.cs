@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     private bool gameActive = true;
     private PlayerController player;
+    public Action OnCaught;
     protected virtual void Awake()
     {
         if (Instance != null && Instance != this)
@@ -51,10 +52,11 @@ public class GameManager : MonoBehaviour
     public void PlayerCaught()
     {
         PauseGameActivity();
+        OnCaught?.Invoke();
         Timers.After(2f, () => 
             {
                 player = FindAnyObjectByType<PlayerController>();
-                player.GetCaught(); 
+                player.GetCaught();
                 Timers.After(3.5f, () => {ReloadCurrentLevel(); ResumeGameActivity(); });
             }
         );
@@ -98,11 +100,12 @@ public class GameManager : MonoBehaviour
     private void PauseGameActivity()
     {
         gameActive = false;
-        _timerTimer?.Pause(true);
+        Timers.Remove(_timerTimer);
     }
     private void ResumeGameActivity()
     {
         gameActive = false;
+        Timers.Add(_timerTimer);
     }
     public bool GetGameActive()
     {

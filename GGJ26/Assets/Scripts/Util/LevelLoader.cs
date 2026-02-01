@@ -20,15 +20,18 @@ public class LevelLoader : MonoBehaviour
 	{
 		if (_isLoading) return;
 		loadStarted.Invoke();
-		levelIndex++;
+		if(SceneManager.GetSceneByName("lvl" + (levelIndex + 1)).IsValid())
+		{
+			levelIndex++;
+		}
+		else levelIndex--;
         LoadSceneByName("lvl" + levelIndex);
 	}
 	public void ReloadCurrentScenes()
 	{
 		if (_isLoading) return;
-		Debug.Log("Reloading current scene: " + SceneManager.GetActiveScene().name);
-		StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
-	}
+        LoadSceneByName("lvl" + levelIndex);
+    }
 	public void LoadSceneByName(string name)
 	{
 		if (_isLoading) return;

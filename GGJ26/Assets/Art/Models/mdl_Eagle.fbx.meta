@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 91a90d9d91bae2940848025280f1ef1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: mat_BaldEagle_Body
     second: {fileID: 2100000, guid: 18cfc14ba9ec98243a59eb39e10082b6, type: 2}
   - first:

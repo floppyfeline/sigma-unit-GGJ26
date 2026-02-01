@@ -43,6 +43,10 @@ public class UIManager : MonoBehaviour
         UpdateUIColours(PaletteManager.Instance.CurrentLevelPalette.palette);
 
         GameManager.Instance.OnTimerUpdate += UpdateTimer;
+        GameManager.Instance.OnCaught += () => 
+        {
+            _timer.text = "CAUGHT";
+        };
         GameManager.Instance.OnPickup += () => 
         {
             _collectiblesCollected++;
@@ -51,6 +55,7 @@ public class UIManager : MonoBehaviour
     }
     private void OnCollectiblePickup()
     {
+        if (_collectiblesCollected >= 3) _timer.text = "CLEAR";
         for (int i = 0; i < 3; i++)
         {
             if (i <= _collectiblesCollected)
