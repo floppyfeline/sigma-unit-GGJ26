@@ -37,7 +37,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(!GameManager.Instance.GetGameActive()) return;
+        if(!GameManager.Instance.GetGameActive()) 
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
 
         if(movementEnabled) HandleMovement();
         else OnMove?.Invoke(false);

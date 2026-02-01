@@ -10,7 +10,6 @@ public class PushButton : MonoBehaviour, ITongueable
     {
         OnPushed?.Invoke();
 
-
         TogglePressed(true);
         Timers.UntilThen(Constants.TONGUE_Speed / 2, () => 
         { 

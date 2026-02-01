@@ -38,7 +38,6 @@ public class Eagle : MonoBehaviour
         if(collidersSeeingPlayer <= 0)
             detectionTimer = Constants.EAGLE_DetectionTime;
 
-        Debug.Log(detectionTimer + " Seconds left");
         detectionTimer -= Time.deltaTime;
 
         if(detectionTimer <= 0) 

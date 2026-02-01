@@ -4,12 +4,16 @@ public class BirdPickup : MonoBehaviour
 {
     [SerializeField] private Vector3 initOffsetToPlayer;
     [SerializeField] private Vector3 carryToOffset;
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private Vector3 pickUpOffset;
+    [SerializeField] private float catchTime = 1.5f;
 
     private Transform player;
+    private Vector3 stashedPlayerPos;
 
     private bool playerApproach = false;
     private bool playerCarry = false;
+
+    private float timer;
 
     public void CatchPlayer(Transform player)
     {
@@ -17,33 +21,48 @@ public class BirdPickup : MonoBehaviour
 
         this.player = player;
         transform.position = player.position + initOffsetToPlayer;
-        transform.rotation = Quaternion.LookRotation(new Vector3(0, player.position.y - transform.position.y, 0));
+        transform.rotation = Quaternion.LookRotation(player.position - transform.position);
 
         playerApproach = true;
         playerCarry = false;
+
+        timer = catchTime;
     }
 
     private void Update()
     {
         if (player == null) return;
 
+        timer -= Time.deltaTime;
+
         if (playerApproach && !playerCarry)
         {
-            Vector3 target = player.position + initOffsetToPlayer;
-            transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(player.position + initOffsetToPlayer, player.position + pickUpOffset, 1 - (timer / catchTime));
 
-            if (Vector3.SqrMagnitude(transform.position - target) < 0.001f)
+            if(timer < 0)
             {
-                player.SetParent(transform);
+                timer = catchTime;
                 playerApproach = false;
                 playerCarry = true;
+
+                stashedPlayerPos = player.position;
+
+                player.SetParent(transform);
             }
         }
 
         if (playerCarry && !playerApproach)
         {
-            Vector3 target = player.position + carryToOffset;
-            transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(stashedPlayerPos + pickUpOffset, stashedPlayerPos + carryToOffset, 1 - (timer / catchTime));
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(carryToOffset, 0.2f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(initOffsetToPlayer, 0.2f);
     }
 }
