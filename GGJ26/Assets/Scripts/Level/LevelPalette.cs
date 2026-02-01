@@ -26,6 +26,10 @@ public class LevelPalette : ScriptableObject
         swapped.Color2 = colors[1];
         swapped.Color3 = colors[2];
         swapped.Color4 = colors[3];
+        swapped.ChamRestColor = palette.ChamRestColor;
+        swapped.None = palette.None;
+        swapped.ShadowColor = palette.ShadowColor;
+        swapped.Special = palette.Special;
 
         return swapped;
     }

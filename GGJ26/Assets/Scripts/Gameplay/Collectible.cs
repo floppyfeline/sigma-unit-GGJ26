@@ -12,6 +12,7 @@ public class Collectible : MonoBehaviour, ITongueable
     {
         if (IsCollected) return;
         IsCollected = true;
+        PaletteManager.Instance.SetRandomPalette();
         Timers.After(_disappearDelay, () => {
             Timers.UntilThen(_disappearDuration, () =>
             {

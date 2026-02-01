@@ -12,6 +12,26 @@ public class Colourable : InspectorAttributes
     {
         PaletteManager.Instance.OnPaletteChanged += (palette) => SetColour(Colour, palette);
     }
+    static public Color GetColourFromPalette(LevelPaletteStruct palette, TileColour colour)
+    {
+        switch (colour)
+        {
+            case TileColour.First:
+                return palette.Color1;
+            case TileColour.Second:
+                return palette.Color2;
+            case TileColour.Third:
+                return palette.Color3;
+            case TileColour.Fourth:
+                return palette.Color4;
+            case TileColour.None:
+                return palette.None;
+            case TileColour.Special:
+                return palette.Special;
+            default:
+                return Color.black;
+        }
+    }
     protected Color GetColourFromPalette(LevelPaletteStruct palette)
     {
         switch (Colour)

@@ -20,4 +20,4 @@ MonoBehaviour:
     Color4: {r: 1, g: 0, b: 0.4916792, a: 0}
     None: {r: 0.2274939, g: 0.25652483, b: 0.4501347, a: 0}
     ShadowColor: {r: 0.01785707, g: 0, b: 0.42857128, a: 0}
-    Special: {r: 1, g: 0.49208987, b: 0, a: 0}
+    Special: {r: 0.815876, g: 0, b: 1, a: 0}
