@@ -19,6 +19,8 @@ public class BirdPickup : MonoBehaviour
     {
         gameObject.SetActive(true);
 
+        AudioManager.Instance.PlayAudioClip("EagleScreech");
+
         this.player = player;
         transform.position = player.position + initOffsetToPlayer;
         transform.rotation = Quaternion.LookRotation(player.position - transform.position);
