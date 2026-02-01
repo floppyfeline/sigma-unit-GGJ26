@@ -16,6 +16,8 @@ public class PaletteManager : InspectorAttributes
             Instance = this;
         else
             Destroy(this);
+        int index = UnityEngine.Random.Range(0, _allPalettes.Count);
+        _currentLevelPalette = _allPalettes[index];
     }
     private void Start()
     {

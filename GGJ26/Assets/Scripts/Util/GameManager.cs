@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 
     private bool gameActive = true;
     private PlayerController player;
-
     protected virtual void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,9 +23,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SceneLoader = gameObject.AddComponent<LevelLoader>();
+        SceneLoader = FindAnyObjectByType<LevelLoader>();
 
-        player = FindAnyObjectByType<PlayerController>();
     }
     private void OnDestroy()
     {
@@ -37,20 +35,70 @@ public class GameManager : MonoBehaviour
         Timers.RunTimers();
     }
 
+    private Timer _timerTimer;
+    public Action<int> OnTimerUpdate;
+    private int _secondsLeft;
+        public int SecondsLeft
+    {
+        get
+            { return _secondsLeft; }
+        set
+        {
+            _secondsLeft = value; 
+            OnTimerUpdate?.Invoke(_secondsLeft);
+        }
+    }
     public void PlayerCaught()
     {
         PauseGameActivity();
         Timers.After(2f, () => 
             {
+                player = FindAnyObjectByType<PlayerController>();
                 player.GetCaught(); 
                 Timers.After(3.5f, () => {ReloadCurrentLevel(); ResumeGameActivity(); });
             }
         );
     }
+    int _collectiblesPickedUp = 0;
+    public Action OnPickup;
+    public void OnCollectiblePickedUp()
+    {
+        _collectiblesPickedUp++;
+        if (_collectiblesPickedUp >= 3)
+        {
+            Debug.Log("All collectibles picked up! You win!");
+            PauseGameActivity();
+            Timers.After(3f, () => 
+            {
+                Debug.Log("Loading next level...");
+                SceneLoader.LoadNextLevel();
+                ResumeGameActivity();
+            });
+        }
+    }
+
+    public void StartLevelTimer(int timeLimit)
+    {
+        SecondsLeft = timeLimit;
+        _timerTimer = Timers.After(1f, () => 
+        {
+            SecondsLeft--;
+            if (_secondsLeft > 0)
+            {
+                StartLevelTimer(SecondsLeft);
+            }
+            else
+            {
+                Debug.Log("Time's up!");
+                PlayerCaught();
+            }
+        });
+    }
 
     private void PauseGameActivity()
     {
         gameActive = false;
+        _timerTimer?.Pause(true);
     }
     private void ResumeGameActivity()
     {
@@ -62,15 +110,11 @@ public class GameManager : MonoBehaviour
     }
 
     #region UI
-    public void ReturnToMainMenu()
-    {
-        SceneLoader.LoadMainMenu();
-    }
 
     public void ReloadCurrentLevel()
     {
         Debug.Log("Ya lost");
-        SceneLoader.ReloadCurrentScene();
+        SceneLoader.ReloadCurrentScenes();
     }
     #endregion
     [System.Serializable]

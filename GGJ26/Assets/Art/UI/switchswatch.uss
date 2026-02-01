@@ -35,6 +35,12 @@
     -unity-font-definition: url("project://database/Assets/Art/UI/Fonts/Top%20Show.otf?fileID=12800000&guid=c01f086c0a0a2dd42a5ed41088248c34&type=3#Top Show");
     font-size: 125px;
     margin-bottom: -15px;
+    transition-duration: 0.1s;
+}
+
+.text.highlight {
+    transition-duration: 0.1s;
+    scale: 1.1 1.1 1.1;
 }
 
 .colour1 {
@@ -72,6 +78,7 @@
 .colour-window {
     aspect-ratio: 1;
     width: 59px;
+    transition-duration: 0.1s;
 }
 
 .justify-center {
@@ -83,4 +90,8 @@
     -unity-background-image-tint-color: rgb(255, 255, 255);
     opacity: 1;
     aspect-ratio: 1;
+}
+
+.colour-window.highlight {
+    scale: 1.1 1.1 1.1;
 }

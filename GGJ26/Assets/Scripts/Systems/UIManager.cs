@@ -35,19 +35,25 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             VisualElement icon = root.Q<VisualElement>(COLLECTIBLE_ICON + (i + 1).ToString());
-            Debug.Log(icon);
             _collectibles.Add(icon);
         }
 
 
         PaletteManager.Instance.OnPaletteChanged += UpdateUIColours;
         UpdateUIColours(PaletteManager.Instance.CurrentLevelPalette.palette);
+
+        GameManager.Instance.OnTimerUpdate += UpdateTimer;
+        GameManager.Instance.OnPickup += () => 
+        {
+            _collectiblesCollected++;
+            OnCollectiblePickup();
+        };
     }
     private void OnCollectiblePickup()
     {
         for (int i = 0; i < 3; i++)
         {
-            if (i < _collectiblesCollected)
+            if (i <= _collectiblesCollected)
             {
                 _collectibles[i].SetEnabled(true);
             }
@@ -57,9 +63,15 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    private void UpdateTimer(float timeRemaining)
+    private void UpdateTimer(int timeRemaining)
     {
-        _timer.text = timeRemaining.ToString("F1");
+        _timer.text = timeRemaining.ToString() + " s";
+        if(timeRemaining < 10)
+        {
+            _timer.style.color = Color.red;
+        }
+        _timer.AddToClassList("highlight");
+        Timers.After(0.1f, () => _timer.RemoveFromClassList("highlight"));
     }
     private void UpdateUIColours(LevelPaletteStruct palette)
     {
@@ -76,6 +88,11 @@ public class UIManager : MonoBehaviour
         col.a = 1f;
         _col4.style.backgroundColor = col;
 
+        _col1.AddToClassList("highlight");
+        _col2.AddToClassList("highlight");
+        _col3.AddToClassList("highlight");
+        _col4.AddToClassList("highlight");
+
 
         Debug.Log(_collectibles.Count);
             col = Colourable.GetColourFromPalette(palette, Colourable.TileColour.Special);
@@ -84,5 +101,13 @@ public class UIManager : MonoBehaviour
         {
             collectible.style.unityBackgroundImageTintColor = col;
         }
+
+        Timers.After(0.1f, () => 
+        {
+            _col1.RemoveFromClassList("highlight");
+            _col2.RemoveFromClassList("highlight");
+            _col3.RemoveFromClassList("highlight");
+            _col4.RemoveFromClassList("highlight");
+        });
     }
 }
