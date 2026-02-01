@@ -79,7 +79,7 @@ public class TongueControl : MonoBehaviour
                     transform.forward, 
                     out RaycastHit defaultHit, 
                     Vector3.Distance(transform.position, hit.point), 
-                    ~Constants.LAYER_Player, 
+                    ~(Constants.LAYER_Player | Constants.LAYER_Tongueable), 
                     QueryTriggerInteraction.Ignore))
                 {
                     currentTarget = null;
