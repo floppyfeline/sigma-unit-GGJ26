@@ -181,14 +181,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   screenshotInput:
-    m_Name: 
+    m_Name: Screenshot Input
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: eb28009b-9651-4352-adc0-afe5b45006c3
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ebdb5633-5261-4ea2-b08e-4685f40b6f13
+      m_Path: <Keyboard>/rightBracket
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screenshot Input
+      m_Flags: 0
     m_Flags: 0
+  scaleValue: 2
 --- !u!1 &1670473378
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +236,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  scaleValue: 1
 --- !u!4 &1670473380
 Transform:
   m_ObjectHideFlags: 0

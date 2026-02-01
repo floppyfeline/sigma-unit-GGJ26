@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class DebugScreenshot : MonoBehaviour
 {
     public InputAction screenshotInput;
-    int scaleValue = 1;
+    [SerializeField] int scaleValue = 1;
 
     private void Start()
     {
