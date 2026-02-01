@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bfc85556e080b4e93f5c70d44b0f18, type: 3}
+  m_Name: TestPalette 2
+  m_EditorClassIdentifier: Assembly-CSharp::LevelPalette
+  palette:
+    ChamRestColor: {r: 0.35107628, g: 0.58499295, b: 0.68733144, a: 0}
+    Color1: {r: 0.31478623, g: 0.7142856, b: 0.5074378, a: 0}
+    Color2: {r: 0.8436657, g: 0.46862608, b: 0.27629477, a: 0}
+    Color3: {r: 0.5965902, g: 0.42630827, b: 0.6603774, a: 0}
+    Color4: {r: 0.8190634, g: 0.77493256, b: 1, a: 0}
+    None: {r: 0.2274939, g: 0.25652483, b: 0.4501347, a: 0}
+    ShadowColor: {r: 0.4149212, g: 0.3867923, b: 1, a: 0}
+    Special: {r: 0.815876, g: 0, b: 1, a: 0}

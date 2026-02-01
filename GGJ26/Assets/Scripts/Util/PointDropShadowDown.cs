@@ -52,6 +52,7 @@ public class PointDropShadowDown : MonoBehaviour
             return;
         float safeDistance = Mathf.Max(hit.distance, 0.1f);
         float t = Mathf.InverseLerp(0.1f, _maxDistance, safeDistance);
+        _projector.fadeFactor = t;
         float scale = 1f - t; // 1 at close, 0 at maxDistance+
         _projector.size = new Vector3(_originalSize.x * scale, _originalSize.y * scale, _originalSize.z);
     }
