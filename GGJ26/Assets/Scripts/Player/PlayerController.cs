@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
         if(!groundCheck.IsGrounded)
         {
-            rb.linearVelocity += Vector3.down * gravityBuildup;
+            rb.linearVelocity += Vector3.down * gravityBuildup * Time.deltaTime;
         }
         
         #region Clamp rotation to 45° Steps
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
             {
                 _jumpTimePassed += Time.deltaTime;
                 // 4 = exponent
-                float yVel = -_jumpHeight * 2 * (Mathf.Pow((_jumpTimePassed - jumpTime) / jumpTime, 2 - 1));
+                float yVel = -_jumpHeight * 2 * Mathf.Pow((_jumpTimePassed - jumpTime) / jumpTime, 2 - 1);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, yVel, rb.linearVelocity.z);
                 if(yVel < 0)
                 {

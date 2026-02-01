@@ -150,7 +150,7 @@ MonoBehaviour:
   _hideMoveSpeed: 2
   jumpTime: 0.42
   _jumpHeight: 2.82
-  gravityBuildup: 0.17
+  gravityBuildup: 25
   bird: {fileID: 0}
   visualTransform: {fileID: 4337542781569176131}
 --- !u!114 &6877319612649130983
