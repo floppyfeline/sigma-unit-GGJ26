@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 880420777874040163}
   - {fileID: 1502867599345500746}
+  - {fileID: 4622780670968345420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1798692510684972819
@@ -49,13 +50,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PressurePlate
   OnPressureDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 869508025720601412}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPressureStay:
     m_PersistentCalls:
       m_Calls: []
   OnPressureUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 869508025720601412}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   pressed: {fileID: 8877795894850638205}
   unpressed: {fileID: 6314301734374648076}
 --- !u!65 &4185355332710319592
@@ -656,6 +681,73 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &399540833211576990
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4504243842293709170}
+    m_Modifications:
+    - target: {fileID: 392082698170225953, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_Name
+      value: PF_Pressed_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.889
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+--- !u!198 &869508025720601412 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 691980615439583706, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+  m_PrefabInstance: {fileID: 399540833211576990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4622780670968345420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5020421504446939602, guid: d2c97e92825e21b47b99f7e34c35df73, type: 3}
+  m_PrefabInstance: {fileID: 399540833211576990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1392170162552284577
 PrefabInstance:
   m_ObjectHideFlags: 0
