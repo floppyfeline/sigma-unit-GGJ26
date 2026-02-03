@@ -66,6 +66,12 @@ public class TongueControl : MonoBehaviour
 
         ToggleRotation(false);
 
+        float offsetCurrentYaw = playerTransform.eulerAngles.y + 10f;
+
+        float snapped = Mathf.Round(offsetCurrentYaw / 90f) * 90f;
+
+        playerTransform.rotation = Quaternion.Euler(0f, snapped, 0f);
+
         tongueData.TongueExtent.gameObject.SetActive(true);
         tongueData.TongueTip.gameObject.SetActive(true);
         
@@ -123,7 +129,16 @@ public class TongueControl : MonoBehaviour
         // Clamp rotation to 90° Steps
         if (moveInput.Move != Vector2.zero)
         {
-            Vector3 camForward = moveInput.CameraRotation * Vector3.forward;
+            SnapRotation(new Vector2(moveInput.Move.x, moveInput.Move.x));
+        }
+    }
+
+    // Snap player rotation in steps of 90° to the camera's view
+    private void SnapRotation(Vector2 inputDirection)
+    {
+        if(inputDirection.sqrMagnitude < 0.001f) return;
+
+        Vector3 camForward = moveInput.CameraRotation * Vector3.forward;
             Vector3 camRight   = moveInput.CameraRotation * Vector3.right;
 
             camForward.y = 0f;
@@ -132,15 +147,9 @@ public class TongueControl : MonoBehaviour
             camForward.Normalize();
             camRight.Normalize();
 
-            Vector3 moveDirection =
-                camRight * moveInput.Move.x +
-                camForward * moveInput.Move.y;
-
-            Vector3 moveVector = moveDirection;
-
             Vector3 moveDir =
-                camRight * moveInput.Move.x +
-                camForward * moveInput.Move.y;
+                camRight * inputDirection.x +
+                camForward * inputDirection.y;
 
             moveDir.y = 0f;
             moveDir.Normalize();
@@ -153,7 +162,6 @@ public class TongueControl : MonoBehaviour
             float snapped = Mathf.Round(angle / 90f) * 90f;
 
             playerTransform.rotation = Quaternion.Euler(0f, snapped, 0f);
-        }
     }
 
     private void Update()
